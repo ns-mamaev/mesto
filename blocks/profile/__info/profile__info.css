@@ -22,7 +22,7 @@
     "about about about";
     margin-bottom: 36px;
   }
-};
+}
 
 @media screen and (max-width: 425px) {
   .profile__info {
