@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Mesto</title>
+  <link href="./pages/index.css" rel="stylesheet">
+</head>
+<body>
+  <div class="page">
+    <header class="header">
+      <img src="./images/logo.svg" alt="Место" class="header__logo">
+    </header>
+    <main class="content">
+      <section class="profile">
+        <img src="./images/avatar.jpg" alt="Аватар профиля" class="profile__avatar">
+        <div class="profile__info">
+          <h1 class="profile__name">Никита Мамаев</h1>
+          <button class="profile__edit-button"></button>
+          <p class="profile__about">Путешественник</P>
+        </div>
+        <button class="add-button"></button>
+      </section>
+      <section class="elements">
+        <ul class="elements__list">
+          <li class="photo-card">
+            <div class="photo-card__caption">
+              <h2 class="photo-card__title">Карачаевск</h2>
+              <button class="like-button like-button_place_card"></button>
+            </div>
+            <img src="./images/photo-card_karachaevsk.jpg" alt="Карачаевск" class="photo-card__image">
+          </li>
+          <li class="photo-card">
+            <div class="photo-card__caption">
+              <h2 class="photo-card__title">Гора Эльбрус</h2>
+              <button class="like-button like-button_place_card"></button>
+            </div>
+            <img src="./images/photo-card_elbrus.jpg" alt="Гора Эльбрус" class="photo-card__image">
+          </li>
+          <li class="photo-card">
+            <div class="photo-card__caption">
+              <h2 class="photo-card__title">Домбай</h2>
+              <button class="like-button like-button_place_card"></button>
+            </div>
+            <img src="./images/photo-card_dombay.jpg" alt="Домбай" class="photo-card__image">
+          </li>
+          <li class="photo-card">
+            <div class="photo-card__caption">
+              <h2 class="photo-card__title">Карачаево-Черкессия</h2>
+              <button class="like-button like-button_place_card"></button>
+            </div>
+            <img src="./images/photo-card_karachaevsk.jpg" alt="Карачаевск" class="photo-card__image">
+          </li>
+          <li class="photo-card">
+            <div class="photo-card__caption">
+              <h2 class="photo-card__title">Гора Эльбрус</h2>
+              <button class="like-button like-button_place_card"></button>
+            </div>
+            <img src="./images/photo-card_elbrus.jpg" alt="Гора Эльбрус" class="photo-card__image">
+          </li>
+          <li class="photo-card">
+            <div class="photo-card__caption">
+              <h2 class="photo-card__title">Домбай</h2>
+              <button class="like-button like-button_place_card"></button>
+            </div>
+            <img src="./images/photo-card_dombay.jpg" alt="Домбай" class="photo-card__image">
+          </li>
+        </ul>
+      </section>
+    </main>
+    <footer class="footer">
+      <p class="footer__copyright">© 2022 Mesto Russia</p>
+    </footer>
+    <div class="popup">
+      <div class="popup__container">
+        <button class="popup__close-button"></button>
+        <form class="popup__content" id="profile">
+          <h3 class="popup__title">Редактировать профиль</h3>
+          <fieldset class="form" id="profile">
+            <input type="text" class="form__item" id="profile__name" name="profile__name" placeholder="Введите ваше имя">
+            <input type="text" class="form__item" id="profile__about" name="profile__about" placeholder="Ваш род деятельности?">
+          </fieldset>
+          <input type="submit" value="Сохранить" class="form__button">
+        </form>
+      </div>
+    </div>
+  </div>
+<script src="script.js"></script>
+</body>
+</html>

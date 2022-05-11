@@ -1,0 +1,19 @@
+.form__button {
+  margin: 0;
+  margin-top: 48px;
+  padding: 14px 0 18px;
+  width: 100%;
+  border: none;
+  border-radius: 2px;
+  background-color: #000;
+  font-family: 'Inter', Arial, Helvetica, sans-serif;
+  font-weight: 400;
+  font-size: 18px;
+  color: #fff;
+  line-height: 1.22;
+  cursor: pointer;
+}
+
+.form__button:hover {
+  background-color: rgba(0, 0, 0, .8);
+}

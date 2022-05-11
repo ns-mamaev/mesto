@@ -1,0 +1,33 @@
+.profile__info {
+  display: grid;
+  min-width: 250px;
+  align-items: baseline;
+  margin-right: 30px;
+  grid-template-columns: fit-content(350px) min-content;
+  grid-template-areas:
+  "name edit-button"
+  "about about";
+  gap: 16px 18px;
+  flex-grow: 1;
+
+}
+
+@media screen and (max-width: 768px) {
+  .profile__info {
+    width: 100%;
+    margin-right: 0;
+    grid-template-columns: minmax(42px, 1fr) auto minmax(42px, 1fr);
+    grid-template-areas:
+    ". name edit-button"
+    "about about about";
+    margin-bottom: 36px;
+  }
+};
+
+@media screen and (max-width: 425px) {
+  .profile__info {
+    grid-template-columns: minmax(28px, 1fr) auto minmax(28px, 1fr);
+    gap: 14px 10px;
+  }
+}
+
