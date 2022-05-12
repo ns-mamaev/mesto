@@ -16,52 +16,52 @@
         <img src="./images/avatar.jpg" alt="Аватар профиля" class="profile__avatar">
         <div class="profile__info">
           <h1 class="profile__name">Никита Мамаев</h1>
-          <button class="profile__edit-button"></button>
+          <button type="button" class="profile__edit-button" aria-label="edit profile"></button>
           <p class="profile__about">Путешественник</p>
         </div>
-        <button class="add-button"></button>
+        <button type="button" class="profile__add-button" aria-label="add card"></button>
       </section>
       <section class="elements">
         <ul class="elements__list">
           <li class="photo-card">
             <div class="photo-card__caption">
               <h2 class="photo-card__title">Карачаевск</h2>
-              <button class="like-button like-button_place_card"></button>
+              <button type="button" class="photo-card__like-button" aria-label="like image"></button>
             </div>
             <img src="./images/photo-card_karachaevsk.jpg" alt="Карачаевск" class="photo-card__image">
           </li>
           <li class="photo-card">
             <div class="photo-card__caption">
               <h2 class="photo-card__title">Гора Эльбрус</h2>
-              <button class="like-button like-button_place_card"></button>
+              <button type="button" class="photo-card__like-button" aria-label="like image"></button>
             </div>
             <img src="./images/photo-card_elbrus.jpg" alt="Гора Эльбрус" class="photo-card__image">
           </li>
           <li class="photo-card">
             <div class="photo-card__caption">
               <h2 class="photo-card__title">Домбай</h2>
-              <button class="like-button like-button_place_card"></button>
+              <button type="button" class="photo-card__like-button" aria-label="like image"></button>
             </div>
             <img src="./images/photo-card_dombay.jpg" alt="Домбай" class="photo-card__image">
           </li>
           <li class="photo-card">
             <div class="photo-card__caption">
               <h2 class="photo-card__title">Карачаево-Черкессия</h2>
-              <button class="like-button like-button_place_card"></button>
+              <button type="button" class="photo-card__like-button" aria-label="like image"></button>
             </div>
             <img src="./images/photo-card_karachaevsk.jpg" alt="Карачаевск" class="photo-card__image">
           </li>
           <li class="photo-card">
             <div class="photo-card__caption">
               <h2 class="photo-card__title">Гора Эльбрус</h2>
-              <button class="like-button like-button_place_card"></button>
+              <button type="button" class="photo-card__like-button" aria-label="like image"></button>
             </div>
             <img src="./images/photo-card_elbrus.jpg" alt="Гора Эльбрус" class="photo-card__image">
           </li>
           <li class="photo-card">
             <div class="photo-card__caption">
               <h2 class="photo-card__title">Домбай</h2>
-              <button class="like-button like-button_place_card"></button>
+              <button type="button" class="photo-card__like-button" aria-label="like image"></button>
             </div>
             <img src="./images/photo-card_dombay.jpg" alt="Домбай" class="photo-card__image">
           </li>
@@ -73,18 +73,18 @@
     </footer>
     <div class="popup">
       <div class="popup__container">
-        <button class="popup__close-button"></button>
-        <form class="form" id="profile">
+        <button aria-label="close popup" class="popup__close-button"></button>
+        <form class="form" name="profile" id="profile">
           <h3 class="form__title">Редактировать профиль</h3>
           <fieldset class="form__fields" id="profile__edit-fields">
-            <input type="text" class="form__item" id="profile__name" name="profile__name" placeholder="Введите ваше имя">
-            <input type="text" class="form__item" id="profile__about" name="profile__about" placeholder="Ваш род деятельности?">
+            <input type="text" class="form__item" id="profile__name" name="profile__name" placeholder="Введите ваше имя" required>
+            <input type="text" class="form__item" id="profile__about" name="profile__about" placeholder="Ваш род деятельности?" required>
           </fieldset>
-          <input type="submit" value="Сохранить" class="form__button">
+          <button type="submit" name="profile__save" value="Сохранить" class="form__button">Сохранить</button>
         </form>
       </div>
     </div>
   </div>
-<script src="script.js"></script>
+<script src="./scripts/script.js"></script>
 </body>
 </html>

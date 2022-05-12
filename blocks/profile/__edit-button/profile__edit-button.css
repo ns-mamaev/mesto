@@ -10,6 +10,9 @@
   border: 1px solid #fff;
   box-sizing: border-box;
   grid-area: edit-button;
+  transition: opacity 0.2s ease-out;
+  position: relative;     /* Вынужден использовать смещение от центра, т.к. align-items:baseline не отображается корректно в firefox */
+  top: 4px;
 }
 
 .profile__edit-button:hover {
@@ -22,5 +25,6 @@
     width: 18px;
     height: 18px;
     background-size: 7.5px 7.5px;
+    top: 1px;
   }
 }
