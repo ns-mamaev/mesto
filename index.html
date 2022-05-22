@@ -23,49 +23,16 @@
       </section>
       <section class="elements">
         <ul class="elements__list">
-          <li class="photo-card">
-            <div class="photo-card__caption">
-              <h2 class="photo-card__title">Карачаевск</h2>
-              <button type="button" class="photo-card__like-button" aria-label="like image"></button>
-            </div>
-            <img src="./images/photo-card_karachaevsk.jpg" alt="Карачаевск" class="photo-card__image">
-            <button type="button" class="photo-card__delete-button" aria-label="delete card"></button>
-          </li>
-          <li class="photo-card">
-            <div class="photo-card__caption">
-              <h2 class="photo-card__title">Гора Эльбрус</h2>
-              <button type="button" class="photo-card__like-button" aria-label="like image"></button>
-            </div>
-            <img src="./images/photo-card_elbrus.jpg" alt="Гора Эльбрус" class="photo-card__image">
-          </li>
-          <li class="photo-card">
-            <div class="photo-card__caption">
-              <h2 class="photo-card__title">Домбай</h2>
-              <button type="button" class="photo-card__like-button" aria-label="like image"></button>
-            </div>
-            <img src="./images/photo-card_dombay.jpg" alt="Домбай" class="photo-card__image">
-          </li>
-          <li class="photo-card">
-            <div class="photo-card__caption">
-              <h2 class="photo-card__title">Карачаево-Черкессия</h2>
-              <button type="button" class="photo-card__like-button" aria-label="like image"></button>
-            </div>
-            <img src="./images/photo-card_karachaevsk.jpg" alt="Карачаевск" class="photo-card__image">
-          </li>
-          <li class="photo-card">
-            <div class="photo-card__caption">
-              <h2 class="photo-card__title">Гора Эльбрус</h2>
-              <button type="button" class="photo-card__like-button" aria-label="like image"></button>
-            </div>
-            <img src="./images/photo-card_elbrus.jpg" alt="Гора Эльбрус" class="photo-card__image">
-          </li>
-          <li class="photo-card">
-            <div class="photo-card__caption">
-              <h2 class="photo-card__title">Домбай</h2>
-              <button type="button" class="photo-card__like-button" aria-label="like image"></button>
-            </div>
-            <img src="./images/photo-card_dombay.jpg" alt="Домбай" class="photo-card__image">
-          </li>
+          <template id="photo-card-template">
+            <li class="photo-card">
+              <div class="photo-card__caption">
+                <h2 class="photo-card__title"></h2>
+                <button type="button" class="photo-card__like-button" aria-label="like image"></button>
+              </div>
+              <img src="" alt="" class="photo-card__image">
+              <button type="button" class="photo-card__delete-button" aria-label="delete card"></button>
+            </li>
+          </template>
         </ul>
       </section>
     </main>
