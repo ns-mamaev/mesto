@@ -13,11 +13,11 @@ closeButtons.forEach(button => {
 
 //profile
 
-const profilePopup = document.querySelector('.popup_content_edit-profile');
-const profileButton = document.querySelector('.profile__edit-button');
-const profileForm = profilePopup.querySelector('.form_content_edit-profile');
-const nameInput = profileForm.querySelector('.form__item_content_profile-name');
-const aboutInput = profileForm.querySelector('.form__item_content_profile-about');
+const profileEditPopup = document.querySelector('.popup_content_edit-profile');
+const profileEditButton = document.querySelector('.profile__edit-button');
+const profileEditForm = profileEditPopup.querySelector('.form_content_edit-profile');
+const nameInput = profileEditForm.querySelector('.form__item_content_profile-name');
+const aboutInput = profileEditForm.querySelector('.form__item_content_profile-about');
 const nameContainer = document.querySelector('.profile__name');
 const aboutContainer = document.querySelector('.profile__about');
 
@@ -26,8 +26,8 @@ const getProfileInfo = () => {
   aboutInput.value = aboutContainer.textContent;
 };
 
-profileButton.addEventListener('click', () => {
-  openPopup(profilePopup);
+profileEditButton.addEventListener('click', () => {
+  openPopup(profileEditPopup);
   getProfileInfo();
 });
 
@@ -35,10 +35,10 @@ const handleProfileFormSubmit = evt => {
   evt.preventDefault();
   nameContainer.textContent = nameInput.value;
   aboutContainer.textContent = aboutInput.value;
-  closePopup(profilePopup);
+  closePopup(profileEditPopup);
 };
 
-profileForm.addEventListener('submit', handleProfileFormSubmit);
+profileEditForm.addEventListener('submit', handleProfileFormSubmit);
 
 //cards
 
@@ -114,11 +114,11 @@ cardsContainer.prepend(...initialCards.map(cardDescription => createCard(cardDes
 
 //add Card form
 
-const cardPopup = document.querySelector('.popup_content_add-card');
-const cardButton = document.querySelector('.profile__add-button');
-const cardForm = cardPopup.querySelector('.form_content_add-card');
-const placeNameInput = cardForm.querySelector('.form__item_content_new-place-name');
-const placeLinkInput = cardForm.querySelector('.form__item_content_new-place-link');
+const cardAddPopup = document.querySelector('.popup_content_add-card');
+const cardAddButton = document.querySelector('.profile__add-button');
+const cardAddForm = cardAddPopup.querySelector('.form_content_add-card');
+const placeNameInput = cardAddForm.querySelector('.form__item_content_new-place-name');
+const placeLinkInput = cardAddForm.querySelector('.form__item_content_new-place-link');
 
 const handleCreateCardFormSubmit = evt => {
   evt.preventDefault();
@@ -127,13 +127,13 @@ const handleCreateCardFormSubmit = evt => {
   card.link = placeLinkInput.value;
   addCard(card);
 
-  closePopup(cardPopup);
-  cardForm.reset();
+  closePopup(cardAddPopup);
+  cardAddForm.reset();
 };
 
-cardButton.addEventListener('click', () => {
-  openPopup(cardPopup);
+cardAddButton.addEventListener('click', () => {
+  openPopup(cardAddPopup);
 });
 
-cardForm.addEventListener('submit', handleCreateCardFormSubmit);
+cardAddForm.addEventListener('submit', handleCreateCardFormSubmit);
 
