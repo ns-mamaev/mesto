@@ -13,7 +13,7 @@
   background-repeat: no-repeat;
   background-size: contain;
   transition: opacity 0.2s ease-out;
-  z-index: 2;
+  z-index: 1;
 }
 
 .photo-card__delete-button:hover {
