@@ -1,15 +1,21 @@
+const popups = document.querySelectorAll('.popup');
 const CLASS_OPENED_POPUP = 'popup_opened';
 
 const openPopup = popup => popup.classList.add(CLASS_OPENED_POPUP);
 
 const closePopup = popup => popup.classList.remove(CLASS_OPENED_POPUP);
 
-const closeButtons = document.querySelectorAll('.popup__close-button');
+// const listenPressEsc = () => {
 
-closeButtons.forEach(button => {
-  const popup = button.closest('.popup');
-  button.addEventListener('click', () => closePopup(popup));
-});
+// };
+
+const handleClickOnPopup = function (evt) {
+  if (evt.target === this || evt.target.classList.contains('popup__close-button')) {
+    closePopup(this);
+  }
+};
+
+popups.forEach(popup => popup.addEventListener('mousedown', handleClickOnPopup));
 
 //profile
 
@@ -109,4 +115,5 @@ cardAddButton.addEventListener('click', () => {
 });
 
 cardAddForm.addEventListener('submit', handleCreateCardFormSubmit);
+
 
