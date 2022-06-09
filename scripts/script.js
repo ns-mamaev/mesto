@@ -1,13 +1,22 @@
 const popups = document.querySelectorAll('.popup');
 const CLASS_OPENED_POPUP = 'popup_opened';
 
-const openPopup = popup => popup.classList.add(CLASS_OPENED_POPUP);
+const closePopupByEsc = function(evt) {
+  if (evt.key === 'Escape') {
+    closePopup(document.querySelector(`.${CLASS_OPENED_POPUP}`));
+  }
+};
 
-const closePopup = popup => popup.classList.remove(CLASS_OPENED_POPUP);
+const openPopup = popup => {
+  popup.classList.add(CLASS_OPENED_POPUP);
+  document.addEventListener('keydown', closePopupByEsc);
+};
 
-// const listenPressEsc = () => {
+const closePopup = popup => {
+  popup.classList.remove(CLASS_OPENED_POPUP);
+  document.removeEventListener('keydown', closePopupByEsc);
+};
 
-// };
 
 const handleClickOnPopup = function (evt) {
   if (evt.target === this || evt.target.classList.contains('popup__close-button')) {
