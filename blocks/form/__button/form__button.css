@@ -1,7 +1,7 @@
 .form__button {
   margin: 0;
-  margin-top: 48px;
-  padding: 14px 0 18px;
+  margin-top: 18px;
+  padding: 13px 0 13px;
   width: 100%;
   border: none;
   border-radius: 2px;
@@ -12,12 +12,22 @@
   color: #fff;
   line-height: 1.22;
   cursor: pointer;
+  position: relative;
 
 }
 
 .form__button:hover {
   background-color: rgba(0, 0, 0, .8);
 }
+
+.form__button:disabled {
+  background-color: transparent;
+  color: rgba(0, 0, 0, .2);
+  border: 1px solid rgba(0, 0, 0, .2);
+  padding: 12px 0 12px;  /* компенсируем ширину рамки 1px */
+  cursor: not-allowed;
+}
+
 
 @media screen and (max-width: 425px) {
   .form__button {

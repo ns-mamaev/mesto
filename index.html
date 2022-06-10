@@ -44,10 +44,14 @@
         <button aria-label="close popup" class="popup__close-button"></button>
         <form class="form form_content_edit-profile" name="profile">
           <h3 class="form__title">Редактировать профиль</h3>
-          <fieldset class="form__fields">
-            <input type="text" class="form__item form__item_content_profile-name" name="profile__name" placeholder="Введите ваше имя" required>
-            <input type="text" class="form__item form__item_content_profile-about" name="profile__about" placeholder="Ваш род деятельности?" required>
-          </fieldset>
+          <label class="form__field">
+            <input type="text" class="form__item form__item_content_profile-name" name="profile-name" placeholder="Введите ваше имя" required required minlength="2" maxlength="40">
+            <span class="form__error form__error_field_profile-name"></span>
+          </label>
+          <label class="form__field">
+            <input type="text" class="form__item form__item_content_profile-about" name="profile-about" placeholder="Ваш род деятельности?" required required minlength="2" maxlength="200">
+            <span class="form__error form__error_field_profile-about"></span>
+          </label>
           <button type="submit" name="profile__save" value="Сохранить" class="form__button">Сохранить</button>
         </form>
       </div>
@@ -57,10 +61,14 @@
         <button aria-label="close popup" class="popup__close-button"></button>
         <form class="form form_content_add-card" name="place">
           <h3 class="form__title">Новое место</h3>
-          <fieldset class="form__fields">
-            <input type="text" class="form__item form__item_content_new-place-name" name="place__name" placeholder="Название" required>
-            <input type="url" class="form__item form__item_content_new-place-link" name="place__link" placeholder="Ссылка на картинку" required>
-          </fieldset>
+          <label class="form__field">
+            <input type="text" class="form__item form__item_content_new-place-name" name="place-name" placeholder="Название" required minlength="2" maxlength="40">
+            <span class="form__error form__error_field_place-name"></span>
+          </label>
+          <label class="form__field">
+            <input type="url" class="form__item form__item_content_new-place-link" name="place-link" placeholder="Ссылка на картинку" required minlength="7">
+            <span class="form__error form__error_field_place-link"></span>
+          </label>
           <button type="submit" name="place__create" value="Создать" class="form__button">Создать</button>
         </form>
       </div>

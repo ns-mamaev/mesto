@@ -17,6 +17,8 @@ const closePopup = popup => {
   document.removeEventListener('keydown', closePopupByEsc);
 };
 
+const disableSubmitButton = buttonElement => buttonElement.setAttribute('disabled', '');
+
 
 const handleClickOnPopup = function (evt) {
   if (evt.target === this || evt.target.classList.contains('popup__close-button')) {
@@ -51,6 +53,8 @@ const handleProfileFormSubmit = evt => {
   nameContainer.textContent = nameInput.value;
   aboutContainer.textContent = aboutInput.value;
   closePopup(profileEditPopup);
+  const submitButton = evt.target.querySelector('.form__button');
+  disableSubmitButton(submitButton);
 };
 
 profileEditForm.addEventListener('submit', handleProfileFormSubmit);
@@ -117,6 +121,8 @@ const handleCreateCardFormSubmit = evt => {
 
   closePopup(cardAddPopup);
   cardAddForm.reset();
+  const submitButton = evt.target.querySelector('.form__button');
+  disableSubmitButton(submitButton);
 };
 
 cardAddButton.addEventListener('click', () => {
