@@ -1,3 +1,5 @@
+import initialCards from './cards.js'
+
 const popups = document.querySelectorAll('.popup');
 const CLASS_OPENED_POPUP = 'popup_opened';
 
