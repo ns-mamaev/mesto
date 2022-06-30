@@ -35,6 +35,7 @@ popups.forEach(popup => popup.addEventListener('mousedown', handleClickOnPopup))
 const profileEditPopup = document.querySelector('.popup_content_edit-profile');
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileEditForm = profileEditPopup.querySelector('.form_content_edit-profile');
+const profileSubmitButton = profileEditForm.querySelector('.form__button');
 const nameInput = profileEditForm.querySelector('.form__item_content_profile-name');
 const aboutInput = profileEditForm.querySelector('.form__item_content_profile-about');
 const nameContainer = document.querySelector('.profile__name');
@@ -55,8 +56,7 @@ const handleProfileFormSubmit = evt => {
   nameContainer.textContent = nameInput.value;
   aboutContainer.textContent = aboutInput.value;
   closePopup(profileEditPopup);
-  const submitButton = evt.target.querySelector('.form__button');
-  disableSubmitButton(submitButton);
+  disableSubmitButton(profileSubmitButton);
 };
 
 profileEditForm.addEventListener('submit', handleProfileFormSubmit);
@@ -64,12 +64,16 @@ profileEditForm.addEventListener('submit', handleProfileFormSubmit);
 //cards
 
 const cardsContainer = document.querySelector('.elements__list');
+const createCard = (cardData) => {
+  return (new Card(cardData, '#photo-card-template').generateCard());
+}
 
-cardsContainer.prepend(...initialCards.map(cardData => (new Card(cardData, '#photo-card-template')).generateCard()));  
+cardsContainer.prepend(...initialCards.map(cardData => createCard(cardData)));  
 
 const cardAddPopup = document.querySelector('.popup_content_add-card');
 const cardAddButton = document.querySelector('.profile__add-button');
 const cardAddForm = cardAddPopup.querySelector('.form_content_add-card');
+const addCardSubmitButton = cardAddForm.querySelector('.form__button');
 const placeNameInput = cardAddForm.querySelector('.form__item_content_new-place-name');
 const placeLinkInput = cardAddForm.querySelector('.form__item_content_new-place-link');
 
@@ -79,12 +83,11 @@ const handleCreateCardFormSubmit = evt => {
     name: placeNameInput.value,
     link: placeLinkInput.value,
   }  
-  cardsContainer.prepend((new Card(cardData, '#photo-card-template')).generateCard());
+  cardsContainer.prepend(createCard(cardData));
 
   closePopup(cardAddPopup);
   cardAddForm.reset();
-  const submitButton = evt.target.querySelector('.form__button');
-  disableSubmitButton(submitButton);
+  disableSubmitButton(addCardSubmitButton);
 };
 
 cardAddButton.addEventListener('click', () => {
