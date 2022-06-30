@@ -1,5 +1,8 @@
-import initialCards from './cards.js'
+import initialCards from './initialCards.js'
+import FormValidator from './FormValidator.js';
+import Card from './Card.js';
 
+//popups logic
 const popups = document.querySelectorAll('.popup');
 const CLASS_OPENED_POPUP = 'popup_opened';
 
@@ -21,17 +24,14 @@ const closePopup = popup => {
 
 const disableSubmitButton = buttonElement => buttonElement.setAttribute('disabled', '');
 
-
 const handleClickOnPopup = function (evt) {
   if (evt.target === this || evt.target.classList.contains('popup__close-button')) {
     closePopup(this);
   }
 };
-
 popups.forEach(popup => popup.addEventListener('mousedown', handleClickOnPopup));
 
 //profile
-
 const profileEditPopup = document.querySelector('.popup_content_edit-profile');
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileEditForm = profileEditPopup.querySelector('.form_content_edit-profile');
@@ -64,49 +64,8 @@ profileEditForm.addEventListener('submit', handleProfileFormSubmit);
 //cards
 
 const cardsContainer = document.querySelector('.elements__list');
-const cardTemplate = document.querySelector('#photo-card-template').content;
 
-const renderLike = evt => evt.target.classList.toggle('photo-card__like-button_liked');
-
-const removeCard = evt => evt.target.closest('.photo-card').remove();
-
-const imagePopup = document.querySelector('.popup_content_zoomed-card-image');
-const zoomedImage = imagePopup.querySelector('.popup__zoomed-image');
-const zoomedImageCaption = imagePopup.querySelector('.popup__zoomed-image-caption');
-
-const handleCardClick = (imageDescription) => {
-  openPopup(imagePopup);
-  zoomedImage.src = imageDescription.link;
-  zoomedImage.alt = imageDescription.name;
-  zoomedImageCaption.textContent = imageDescription.name;
-};
-
-const createCard = (cardDescription) => {
-  const cardElement = cardTemplate.querySelector('.photo-card').cloneNode(true);
-  const cardTitle = cardElement.querySelector('.photo-card__title');
-  const cardImg = cardElement.querySelector('.photo-card__image');
-  const likeButton = cardElement.querySelector('.photo-card__like-button');
-  const buttonRemove = cardElement.querySelector('.photo-card__delete-button');
-
-  cardTitle.textContent = cardDescription.name;
-  cardImg.src = cardDescription.link;
-  cardImg.alt = cardDescription.name;
-
-  likeButton.addEventListener('click', renderLike);
-  buttonRemove.addEventListener('click', removeCard);
-  cardImg.addEventListener('click', () => handleCardClick(cardDescription));
-
-  return cardElement;
-};
-
-const addCard = cardDescription => {
-  const newCard = createCard(cardDescription);
-  cardsContainer.prepend(newCard);
-};
-
-cardsContainer.prepend(...initialCards.map(cardDescription => createCard(cardDescription)));  //создаю массив карточек и добавляю их сразу вместе
-
-//add Card form
+cardsContainer.prepend(...initialCards.map(cardData => (new Card(cardData, '#photo-card-template')).generateCard()));  
 
 const cardAddPopup = document.querySelector('.popup_content_add-card');
 const cardAddButton = document.querySelector('.profile__add-button');
@@ -116,10 +75,11 @@ const placeLinkInput = cardAddForm.querySelector('.form__item_content_new-place-
 
 const handleCreateCardFormSubmit = evt => {
   evt.preventDefault();
-  const card = {};
-  card.name = placeNameInput.value;
-  card.link = placeLinkInput.value;
-  addCard(card);
+  const cardData = {
+    name: placeNameInput.value,
+    link: placeLinkInput.value,
+  }  
+  cardsContainer.prepend((new Card(cardData, '#photo-card-template')).generateCard());
 
   closePopup(cardAddPopup);
   cardAddForm.reset();
@@ -133,4 +93,21 @@ cardAddButton.addEventListener('click', () => {
 
 cardAddForm.addEventListener('submit', handleCreateCardFormSubmit);
 
+// validation
+
+const validationSettings = {
+    inputSelector: '.form__item',
+    submitButtonSelector: '.form__button',
+    inputErrorClass: 'form__item_type_error',
+    errorClass: 'form__error_visible'
+};
+
+document
+  .querySelectorAll('.form')
+  .forEach(form => {
+    const validator = new FormValidator(validationSettings, form);
+    validator.enableValidation();
+  });
+
+  export {openPopup};
 
