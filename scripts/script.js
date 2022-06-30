@@ -73,7 +73,7 @@ cardsContainer.prepend(...initialCards.map(cardData => createCard(cardData)));
 const cardAddPopup = document.querySelector('.popup_content_add-card');
 const cardAddButton = document.querySelector('.profile__add-button');
 const cardAddForm = cardAddPopup.querySelector('.form_content_add-card');
-const addCardSubmitButton = cardAddForm.querySelector('.form__button');
+const cardSubmitButton = cardAddForm.querySelector('.form__button');
 const placeNameInput = cardAddForm.querySelector('.form__item_content_new-place-name');
 const placeLinkInput = cardAddForm.querySelector('.form__item_content_new-place-link');
 
@@ -87,7 +87,7 @@ const handleCreateCardFormSubmit = evt => {
 
   closePopup(cardAddPopup);
   cardAddForm.reset();
-  disableSubmitButton(addCardSubmitButton);
+  disableSubmitButton(cardSubmitButton);
 };
 
 cardAddButton.addEventListener('click', () => {
