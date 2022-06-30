@@ -1,6 +1,5 @@
 .form__field {
   position: relative;
-  min-height: 58px;
   display: flex;
   flex-direction: column;
 }

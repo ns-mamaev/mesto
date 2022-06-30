@@ -3,6 +3,18 @@
   padding: 0;
   list-style: none;
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(282px, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 20px 17px;
+}
+
+@media screen and (max-width: 976px) {
+  .elements__list {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media screen and (max-width: 654px) {
+  .elements__list {
+    grid-template-columns: 1fr;
+  }
 }
