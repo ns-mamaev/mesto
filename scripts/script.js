@@ -103,7 +103,7 @@ cardAddButton.addEventListener('click', () => {
 
 cardAddForm.addEventListener('submit', handleCreateCardFormSubmit);
 
-profileFormValidator.show();
+console.log(profileFormValidator);
 
   export {openPopup};
 

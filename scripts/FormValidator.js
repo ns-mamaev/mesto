@@ -29,7 +29,7 @@ export default class FormValidator {
   _hideInputError(inputElement, errorElement) {
     inputElement.classList.remove(this._inputErrorClass);
     errorElement.textContent = '';
-    errorElement.classList.remove(this._errorClass); 
+    errorElement.classList.remove(this._errorClass);
   }
 
   _checkInputValidity(inputElement, errorElement) {  
@@ -68,10 +68,6 @@ export default class FormValidator {
     this._fieldsList.forEach(field => {
       this._hideInputError(field.inputElement, field.errorElement);
     });
-  }
-
-  show() {
-    console.log(this);
   }
 }
 
