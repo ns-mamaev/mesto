@@ -7,15 +7,15 @@ export default class FormValidator {
     this._errorClass = settings.errorClass;
   }
 
-  _hasInvalidInputs(inputList) {
-    return inputList.some(input => !input.validity.valid);
+  _hasInvalidInputs() {
+    return this._inputList.some(input => !input.validity.valid);
   };  
 
-  _toggleButtonState(inputList, buttonElement) {
-    if (this._hasInvalidInputs(inputList)) {
-      buttonElement.setAttribute('disabled', '');
+  _toggleButtonState() {
+    if (this._hasInvalidInputs(this._inputList)) {
+      this._buttonElement.setAttribute('disabled', '');
     } else {
-      buttonElement.removeAttribute('disabled');
+      this._buttonElement.removeAttribute('disabled');
     }  
   }
 
@@ -40,16 +40,16 @@ export default class FormValidator {
   }
 
   _setEventListeners() {
-    const inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
-    const buttonElement = this._formElement.querySelector(this._submitButtonSelector);
+    this._inputList = Array.from(this._formElement.querySelectorAll(this._inputSelector));
+    this._buttonElement = this._formElement.querySelector(this._submitButtonSelector);
 
-    this._toggleButtonState(inputList, buttonElement);
+    this._toggleButtonState();
 
-    inputList.forEach(inputElement => {
+    this._inputList.forEach(inputElement => {
       const errorElement = this._formElement.querySelector(`.form__error_field_${inputElement.name}`);
       inputElement.addEventListener('input', () => {
         this._checkInputValidity(inputElement, errorElement);
-        this._toggleButtonState(inputList, buttonElement);
+        this._toggleButtonState();
       });  
     });
   }
@@ -57,6 +57,15 @@ export default class FormValidator {
   enableValidation() {
     this._formElement.addEventListener('submit', evt => evt.preventDefault());
     this._setEventListeners();
+  }
+
+  resetValidation() {
+    this._toggleButtonState();
+
+    this._inputList.forEach(inputElement => {
+      const errorElement = this._formElement.querySelector(`.form__error_field_${inputElement.name}`);
+      this._hideInputError(inputElement, errorElement);
+    });
   }
 }
 
