@@ -1,14 +1,9 @@
-import { openPopup } from "./script.js";
-
-const imagePopup = document.querySelector('.popup_content_zoomed-card-image');
-const zoomedImage = imagePopup.querySelector('.popup__zoomed-image');
-const zoomedImageCaption = imagePopup.querySelector('.popup__zoomed-image-caption');
-
 export default class Card {
-  constructor(cardData, templateSelector) {
+  constructor(cardData, templateSelector, handleCardClick) {
     this._cardName = cardData.name;
     this._cardImgLink= cardData.link;
     this._templateSelector = templateSelector;
+    this._handleCardClick = handleCardClick;
   }
 
   _getTemplate() {
@@ -40,7 +35,7 @@ export default class Card {
 
   _setEventListeners() {
     this._elementImg.addEventListener('click', () => {
-      this._handleCardClick();
+      this._handleCardClick(this._cardName, this._cardImgLink);
     });
     this._elementlikeButton.addEventListener('click', () => {
       this._handleLike();
@@ -50,15 +45,9 @@ export default class Card {
     });
   }
 
-  _handleCardClick() {
-    openPopup(imagePopup);
-    zoomedImage.src = this._cardImgLink;
-    zoomedImage.alt = this._cardName;
-    zoomedImageCaption.textContent = this._cardName;
-  }
-
   _handleLike() {
     this._elementlikeButton.classList.toggle('photo-card__like-button_liked');
+    this._isLiked = !this._isLiked;
   }
 
   _removeCard() {
