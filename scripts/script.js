@@ -1,34 +1,11 @@
 import initialCards from './initialCards.js'
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
+import Popup from './Popup.js';
+import PopupWithImage from './PopupWithImage.js';
 
-//open-close popups
-const CLASS_OPENED_POPUP = 'popup_opened';
-
-const closePopupByEsc = function(evt) {
-  if (evt.key === 'Escape') {
-    closePopup(document.querySelector(`.${CLASS_OPENED_POPUP}`));
-  }
-};
-
-const openPopup = popup => {
-  popup.classList.add(CLASS_OPENED_POPUP);
-  document.addEventListener('keydown', closePopupByEsc);
-};
-
-const closePopup = (popup) => {
-  popup.classList.remove(CLASS_OPENED_POPUP);
-  document.removeEventListener('keydown', closePopupByEsc);
-};
-
-const popups = document.querySelectorAll('.popup');
-popups.forEach(popup => {
-  popup.addEventListener('mousedown', (evt) => {
-    if (evt.target === popup || evt.target.classList.contains('popup__close-button')) {
-      closePopup(popup);
-    }
-  });   
-});
+const popupUser = new Popup('.popup_content_edit-profile');
+popupUser.setEventListeners();
 
 //validation
 
@@ -71,7 +48,7 @@ const getProfileInfo = () => {
 
 profileEditButton.addEventListener('click', () => {
   formValidators['edit-profile'].resetValidation();
-  openPopup(profileEditPopup);
+  popupUser.open();
   getProfileInfo();
 });
 
@@ -92,15 +69,11 @@ const cardAddForm = cardAddPopup.querySelector('.form_content_add-card');
 const placeNameInput = cardAddForm.querySelector('.form__item_content_new-place-name');
 const placeLinkInput = cardAddForm.querySelector('.form__item_content_new-place-link');
 
-const imagePopup = document.querySelector('.popup_content_zoomed-card-image');
-const zoomedImage = imagePopup.querySelector('.popup__zoomed-image');
-const zoomedImageCaption = imagePopup.querySelector('.popup__zoomed-image-caption');
+const imagePopup = new PopupWithImage('.popup_content_zoomed-card-image');
+imagePopup.setEventListeners();
 
 const handleCardClick = (name, link) => {
-  zoomedImage.src = link;
-  zoomedImage.alt = name;
-  zoomedImageCaption.textContent = name;
-  openPopup(imagePopup);
+  imagePopup.open(name, link);
 };
 
 const handleCreateCardFormSubmit = evt => {
