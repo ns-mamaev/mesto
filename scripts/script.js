@@ -1,11 +1,10 @@
 import initialCards from './initialCards.js'
 import FormValidator from './FormValidator.js';
 import Card from './Card.js';
-import Popup from './Popup.js';
 import PopupWithImage from './PopupWithImage.js';
-
-const popupUser = new Popup('.popup_content_edit-profile');
-popupUser.setEventListeners();
+import PopupWithForm from './PopupWithForm.js';
+import Section from './Section.js';
+import UserInfo from './UserInfo.js';
 
 //validation
 
@@ -33,33 +32,41 @@ enableValidation(validationSettings);
 
 //profile edit
 
+const profile = new UserInfo({
+  nameSelector: '.profile__name',
+  aboutSelector: '.profile__about'
+})
+
 const profileEditPopup = document.querySelector('.popup_content_edit-profile');
 const profileEditButton = document.querySelector('.profile__edit-button');
 const profileEditForm = profileEditPopup.querySelector('.form_content_edit-profile');
-const nameInput = profileEditForm.querySelector('.form__item_content_profile-name');
-const aboutInput = profileEditForm.querySelector('.form__item_content_profile-about');
-const nameContainer = document.querySelector('.profile__name');
-const aboutContainer = document.querySelector('.profile__about');
+// const nameInput = profileEditForm.querySelector('.form__item_content_profile-name');
+// const aboutInput = profileEditForm.querySelector('.form__item_content_profile-about');
+// const nameContainer = document.querySelector('.profile__name');
+// const aboutContainer = document.querySelector('.profile__about');
 
-const getProfileInfo = () => {
-  nameInput.value = nameContainer.textContent;
-  aboutInput.value = aboutContainer.textContent;
+// const getProfileInfo = () => {
+//   nameInput.value = nameContainer.textContent;
+//   aboutInput.value = aboutContainer.textContent;
+// };
+
+const handleProfileFormSubmit = ({formData}) => {
+  profile.setUserInfo({formData})
 };
+
+const popupUser = new PopupWithForm('.popup_content_edit-profile', handleProfileFormSubmit);
+popupUser.setEventListeners();
+
 
 profileEditButton.addEventListener('click', () => {
-  formValidators['edit-profile'].resetValidation();
+  // formValidators['edit-profile'].resetValidation();
+  profile.getUserInfo();
   popupUser.open();
-  getProfileInfo();
 });
 
-const handleProfileFormSubmit = evt => {
-  evt.preventDefault();
-  nameContainer.textContent = nameInput.value;
-  aboutContainer.textContent = aboutInput.value;
-  closePopup(profileEditPopup);
-};
 
-profileEditForm.addEventListener('submit', handleProfileFormSubmit);
+
+// profileEditForm.addEventListener('submit', handleProfileFormSubmit);
 
 //add card
 
@@ -97,12 +104,24 @@ cardAddForm.addEventListener('submit', handleCreateCardFormSubmit);
 
 //insert cards
 
-const cardsContainer = document.querySelector('.elements__list');
-const createCard = (cardData) => {
-  return (new Card(cardData, '#photo-card-template', handleCardClick).generateCard());
-}
+const cardList = new Section({
+  items: initialCards,
+  renderer: (cardData) => {
+    const card = new Card(cardData, '#photo-card-template', handleCardClick);
+    const cardElement = card.generateCard();
 
-cardsContainer.prepend(...initialCards.map(cardData => createCard(cardData)));
+    cardList.addItem(cardElement);
+  }
+}, '.elements__list');
+
+cardList.renderItems();
+
+// const cardsContainer = document.querySelector('.elements__list');
+// const createCard = (cardData) => {
+//   return (new Card(cardData, '#photo-card-template', handleCardClick).generateCard());
+// }
+
+// cardsContainer.prepend(...initialCards.map(cardData => createCard(cardData)));
 
 
 
