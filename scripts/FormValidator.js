@@ -43,7 +43,7 @@ export default class FormValidator {
   _setEventListeners() {
     this._fieldsList = [];
     this._formElement.querySelectorAll(this._inputSelector).forEach(inputElement => {
-      const errorElement = this._formElement.querySelector(`.form__error_field_${inputElement.name}`);
+      const errorElement = this._formElement.parentNode.querySelector(`.form__error`);
       const field = { inputElement, errorElement };
       this._fieldsList.push(field);
 

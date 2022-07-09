@@ -45,11 +45,11 @@
         <form class="form form_content_edit-profile" name="edit-profile" novalidate>
           <h3 class="form__title">Редактировать профиль</h3>
           <label class="form__field">
-            <input type="text" class="form__item form__item_content_profile-name" name="name" placeholder="Введите ваше имя" required minlength="2" maxlength="40">
+            <input type="text" class="form__item form__item_content_profile-name" name="profileName" placeholder="Введите ваше имя" required minlength="2" maxlength="40">
             <span class="form__error form__error_field_profile-name"></span>
           </label>
           <label class="form__field">
-            <input type="text" class="form__item form__item_content_profile-about" name="about" placeholder="Ваш род деятельности?" required minlength="2" maxlength="200">
+            <input type="text" class="form__item form__item_content_profile-about" name="profileAbout" placeholder="Ваш род деятельности?" required minlength="2" maxlength="200">
             <span class="form__error form__error_field_profile-about"></span>
           </label>
           <button type="submit" name="profile__save" value="Сохранить" class="form__button">Сохранить</button>
@@ -62,11 +62,11 @@
         <form class="form form_content_add-card" name="add-card" novalidate>
           <h3 class="form__title">Новое место</h3>
           <label class="form__field">
-            <input type="text" class="form__item form__item_content_new-place-name" name="place-name" placeholder="Название" required minlength="2" maxlength="40">
+            <input type="text" class="form__item form__item_content_new-place-name" name="placeName" placeholder="Название" required minlength="2" maxlength="40">
             <span class="form__error form__error_field_place-name"></span>
           </label>
           <label class="form__field">
-            <input type="url" class="form__item form__item_content_new-place-link" name="place-link" placeholder="Ссылка на картинку" required minlength="7">
+            <input type="url" class="form__item form__item_content_new-place-link" name="placeLink" placeholder="Ссылка на картинку" required minlength="7">
             <span class="form__error form__error_field_place-link"></span>
           </label>
           <button type="submit" name="place__create" value="Создать" class="form__button">Создать</button>
