@@ -2,6 +2,7 @@ export default class FormValidator {
   constructor(formElement, settings) {
     this._formElement = formElement;
     this._inputSelector = settings.inputSelector;
+    this._errorSelector = settings.errorSelector;
     this._submitButtonSelector = settings.submitButtonSelector;
     this._inputErrorClass = settings.inputErrorClass;
     this._errorClass = settings.errorClass;
@@ -43,7 +44,7 @@ export default class FormValidator {
   _setEventListeners() {
     this._fieldsList = [];
     this._formElement.querySelectorAll(this._inputSelector).forEach(inputElement => {
-      const errorElement = this._formElement.parentNode.querySelector(`.form__error`);
+      const errorElement = inputElement.parentNode.querySelector(this._errorSelector);
       const field = { inputElement, errorElement };
       this._fieldsList.push(field);
 

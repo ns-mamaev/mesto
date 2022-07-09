@@ -1,3 +1,5 @@
+import { selectors } from "../utils/constants.js";
+
 export default class Card {
   constructor({name, link}, templateSelector, handleCardClick) {
     this._cardName = name;
@@ -10,7 +12,7 @@ export default class Card {
     const cardElement = document
       .querySelector(this._templateSelector)
       .content
-      .querySelector('.photo-card')
+      .querySelector(selectors.card)
       .cloneNode(true)
 
     return cardElement;  
@@ -19,10 +21,10 @@ export default class Card {
   generateCard() {
     this._element = this._getTemplate();
     
-    this._elementTitle = this._element.querySelector('.photo-card__title');
-    this._elementImg = this._element.querySelector('.photo-card__image');
-    this._elementlikeButton = this._element.querySelector('.photo-card__like-button');
-    this._elementRemoveButton = this._element.querySelector('.photo-card__delete-button');
+    this._elementTitle = this._element.querySelector(selectors.cardTitle);
+    this._elementImg = this._element.querySelector(selectors.cardImage);
+    this._elementlikeButton = this._element.querySelector(selectors.cardLike);
+    this._elementRemoveButton = this._element.querySelector(selectors.cardDelete);
 
     this._setEventListeners();
 
@@ -46,7 +48,7 @@ export default class Card {
   }
 
   _handleLike() {
-    this._elementlikeButton.classList.toggle('photo-card__like-button_liked');
+    this._elementlikeButton.classList.toggle(selectors.cardLikeActive);
     this._isLiked = !this._isLiked;
   }
 
