@@ -1,10 +1,16 @@
-import { selectors } from "../utils/constants.js";
-
 export default class Card {
-  constructor({name, link}, templateSelector, handleCardClick) {
+  constructor({name, link}, config, handleCardClick) {
     this._cardName = name;
     this._cardImgLink = link;
-    this._templateSelector = templateSelector;
+
+    this._templateSelector = config.templateSelector;
+    this._cardSelector = config.cardSelector;
+    this._titleSelector = config.titleSelector;
+    this._imageSelector = config.imageSelector;
+    this._btnLikeSelector = config.btnLikeSelector;
+    this._activeLikeClass = config.activeLikeClass;
+    this._btnDeleteSelector = config.btnDeleteSelector;
+
     this._handleCardClick = handleCardClick;
   }
 
@@ -12,7 +18,7 @@ export default class Card {
     const cardElement = document
       .querySelector(this._templateSelector)
       .content
-      .querySelector(selectors.card)
+      .querySelector(this._cardSelector)
       .cloneNode(true)
 
     return cardElement;  
@@ -21,10 +27,10 @@ export default class Card {
   generateCard() {
     this._element = this._getTemplate();
     
-    this._elementTitle = this._element.querySelector(selectors.cardTitle);
-    this._elementImg = this._element.querySelector(selectors.cardImage);
-    this._elementlikeButton = this._element.querySelector(selectors.cardLike);
-    this._elementRemoveButton = this._element.querySelector(selectors.cardDelete);
+    this._elementTitle = this._element.querySelector(this._titleSelector);
+    this._elementImg = this._element.querySelector(this._imageSelector);
+    this._elementlikeButton = this._element.querySelector(this._btnLikeSelector);
+    this._elementRemoveButton = this._element.querySelector(this._btnDeleteSelector);
 
     this._setEventListeners();
 
@@ -48,8 +54,7 @@ export default class Card {
   }
 
   _handleLike() {
-    this._elementlikeButton.classList.toggle(selectors.cardLikeActive);
-    this._isLiked = !this._isLiked;
+    this._elementlikeButton.classList.toggle(this._activeLikeClass);
   }
 
   _removeCard() {

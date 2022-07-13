@@ -36,8 +36,12 @@ const handleProfileFormSubmit = (inputsValues) => {
 
 const popupProfile = new PopupWithForm({
   popupSelector: selectors.popupProfile,
-  closeButtonSelector: selectors.closeButton
-}, handleProfileFormSubmit);
+  closeButtonSelector: selectors.closeButton,
+  openedClass: selectors.openedPopupClass,
+  formSelector: selectors.formSelector,
+  inputSelector: selectors.inputSelector
+}, 
+handleProfileFormSubmit);
 popupProfile.setEventListeners();
 
 const profileEditButton = document.querySelector(selectors.profileEditButton);
@@ -54,16 +58,27 @@ const handleCardClick = (name, link) => {
   imagePopup.open(name, link);
 };
 
-const addCard = (cardData) => {
-  const card = new Card(cardData, selectors.cardTemplate, handleCardClick);
-  const cardElement = card.generateCard();
+const createCard = (cardData) => {
+  const card = new Card(cardData, 
+  {
+    templateSelector: selectors.cardTemplate,
+    cardSelector: selectors.card,
+    titleSelector: selectors.cardTitle,
+    imageSelector: selectors.cardImage,
+    btnLikeSelector: selectors.cardLike,
+    activeLikeClass: selectors.cardLikeActive,
+    btnDeleteSelector: selectors.cardDelete,
+  },
+  handleCardClick);
 
-  cardList.addItem(cardElement)
+  return card.generateCard();
 };
+
+const addCard = (cardData) => cardList.addItem(createCard(cardData));
 
 const cardList = new Section({
   items: initialCards,
-  renderer: addCard
+  renderer: addCard,
 }, selectors.cardsList);
 
 cardList.renderItems();
@@ -72,13 +87,20 @@ const cardAddButton = document.querySelector(selectors.addCardButton);
 
 const popupNewCard = new PopupWithForm({
   popupSelector: selectors.popupAddCard,
-  closeButtonSelector: selectors.closeButton
-}, addCard);
+  closeButtonSelector: selectors.closeButton,
+  formSelector: selectors.formSelector,
+  inputSelector: selectors.inputSelector,
+  openedClass: selectors.openedPopupClass
+},
+ addCard);
 popupNewCard.setEventListeners();
 
 const imagePopup = new PopupWithImage({
   popupSelector: selectors.popupImage,
-  closeButtonSelector: selectors.closeButton
+  closeButtonSelector: selectors.closeButton,
+  imageSelector: selectors.popupImageZoomedImg,
+  captionSelector: selectors.popupImageCaption,
+  openedClass: selectors.openedPopupClass
 });
 imagePopup.setEventListeners();
 

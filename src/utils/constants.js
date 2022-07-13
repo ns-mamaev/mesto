@@ -41,7 +41,7 @@ export const selectors = {
   popupProfile: '.popup_content_edit-profile',
   profileEditButton: '.profile__edit-button',
   nameSelector: '.profile__name',
-  aboutSelector: '.profile__about',
+  aboutSelector: '.profile__about', 
   popupAddCard: '.popup_content_add-card',
   addCardButton: '.profile__add-button',
   cardsList: '.elements__list',
@@ -54,7 +54,7 @@ export const selectors = {
   cardDelete: '.photo-card__delete-button',
   popupImage: '.popup_content_zoomed-card-image',
   popupImageZoomedImg: '.popup__zoomed-image',
-  popupImageCaption: '.popup__zoomed-image-caption'
+  popupImageCaption: '.popup__zoomed-image-caption',
+  openedPopupClass: 'popup_opened'
 };
 
-export const OPENED_POPUP_CLASS = 'popup_opened';
