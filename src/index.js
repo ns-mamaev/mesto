@@ -41,15 +41,10 @@ const popupProfile = new PopupWithForm({
 popupProfile.setEventListeners();
 
 const profileEditButton = document.querySelector(selectors.profileEditButton);
-const popupProfileInputName = document.querySelector(selectors.popupProfileInputName);
-const popupProfileInputAbout = document.querySelector(selectors.popupProfileInputAbout);
 
 profileEditButton.addEventListener('click', () => {
   formValidators['edit-profile'].resetValidation();
-  const {name, about} = profile.getUserInfo();
-  popupProfileInputName.value = name;
-  popupProfileInputAbout.value = about;
-  
+  popupProfile.setInputValues(profile.getUserInfo());
   popupProfile.open();
 });
 

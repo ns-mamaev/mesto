@@ -35,13 +35,13 @@ export const validationSettings = {
 };
 
 export const selectors = {
+  formSelector: '.form',
+  inputSelector: '.form__item',
   closeButton: '.popup__close-button',
   popupProfile: '.popup_content_edit-profile',
   profileEditButton: '.profile__edit-button',
   nameSelector: '.profile__name',
   aboutSelector: '.profile__about',
-  popupProfileInputName: '.form__item_content_profile-name',
-  popupProfileInputAbout: '.form__item_content_profile-about',
   popupAddCard: '.popup_content_add-card',
   addCardButton: '.profile__add-button',
   cardsList: '.elements__list',

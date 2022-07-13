@@ -1,12 +1,12 @@
 import Popup from './Popup.js';
-import { validationSettings } from '../utils/constants.js'
+import { selectors } from '../utils/constants.js'
 
 export default class PopupWithForm extends Popup {
   constructor(config, submitHandler) {
     super(config);
     this._handleSubmit = submitHandler;
-    this._form = this._popupElement.querySelector(validationSettings.formSelector);
-    this._inputList = this._form.querySelectorAll(validationSettings.inputSelector)   //наверно неправильно брать это из вадидации
+    this._form = this._popupElement.querySelector(selectors.formSelector);
+    this._inputList = this._form.querySelectorAll(selectors.inputSelector) 
   }
 
   _getInputValues() {
@@ -14,6 +14,12 @@ export default class PopupWithForm extends Popup {
     this._inputList.forEach(input => values[input.name] = input.value);
     
     return values;
+  }
+
+  setInputValues(data) {
+    this._inputList.forEach(input => {
+      input.value = data[input.name];
+    });
   }
 
   _submit(evt) {
