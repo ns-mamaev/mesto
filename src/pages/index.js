@@ -14,7 +14,7 @@ import Api from '../components/Api.js';
 //Api
 
 const api = new Api({
-  baseUrl: 'http://localhost:3000/v1/cohort-47',
+  baseUrl: 'http://localhost:3000',
   headers: {
     authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6',
     'Content-Type': 'application/json'
@@ -48,9 +48,14 @@ api.getUserInfo()
   })
   .catch(err => console.log(`Данные профиля недоступны: ${err}`)); 
 
-
+//Переписать 
 const handleProfileFormSubmit = (inputsValues) => {
-  profile.setUserInfo(inputsValues)
+  api.changeUserInfo(inputsValues)
+    .then((res) => {
+      const {name, about} = res;
+      profile.setUserInfo({name, about})
+    })
+    .catch(err => console.log(`Невозможно обновить профиль: ${err}`))
 };
 
 const popupProfile = new PopupWithForm({
@@ -97,7 +102,6 @@ const addCard = (cardData) => cardList.addItem(createCard(cardData));
 
 api.getInitialCards()
   .then(cards => {
-    console.log(cards)
     cardList.renderItems(cards)
   })
   .catch(err => console.log(`ошибка получения карточек: ${err}`));

@@ -14,7 +14,7 @@ export default class Api {
         if (res.ok) {
           return res.json()
         }
-        return Promise.reject(`Ошибка: ${res.status}`)
+        return Promise.reject(`Ошибка ${res.status}`)
       })
   }
 
@@ -26,4 +26,17 @@ export default class Api {
     return this._getData('/cards')
   }
 
+  changeUserInfo(data) {
+    return fetch(`${this._baseUrl}/me`, {
+        method: 'PATCH',
+        headers: this._headers,
+        body: JSON.stringify(data)
+      })
+        .then(res => {
+          if (res.ok) {
+            return res.json()
+          }
+          return Promise.reject(`Ошибка ${res.status}`)
+        }) 
+    }
 }
