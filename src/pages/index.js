@@ -7,6 +7,7 @@ import FormValidator from '../components/FormValidator.js';
 import Card from '../components/Card.js';
 import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithConfirmation from '../components/PopupWithConfirmation.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
 import Api from '../components/Api.js';
@@ -22,7 +23,7 @@ const api = new Api({
 });
 
 
-//validation
+//validation // что с валидацией пустой формы? Убрать?
 
 const formValidators = {};
 const enableValidation = (settings) => {
@@ -75,6 +76,18 @@ profileEditButton.addEventListener('click', () => {
   popupProfile.setInputValues(profile.getUserInfo());
   popupProfile.open();
 });
+
+//confirmation popup (нужен класс наследник)
+
+const confirmationPopup = new PopupWithConfirmation({
+  popupSelector: selectors.popupConfirmation,
+  closeButtonSelector: selectors.closeButton,
+  formSelector: selectors.formSelector,
+  openedClass: selectors.openedPopupClass
+}, () => {console.log('Клац!')})
+
+confirmationPopup.setEventListeners();
+
 
 //Add card
 

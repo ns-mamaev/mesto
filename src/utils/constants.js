@@ -30,6 +30,7 @@ export const selectors = {
   popupImage: '.popup_content_zoomed-card-image',
   popupImageZoomedImg: '.popup__zoomed-image',
   popupImageCaption: '.popup__zoomed-image-caption',
-  openedPopupClass: 'popup_opened'
+  openedPopupClass: 'popup_opened',
+  popupConfirmation: '.popup_content_confirmation'
 };
 
