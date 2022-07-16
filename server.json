@@ -1,7 +1,7 @@
 {
   "cards": [
     {
-      "likes": [],
+      "likes": [1,2,3,4,5,6,7,8,9,10,11,12],
       "_id": "5d1f0611d321eb4bdcd707dd",
       "name": "Байкал",
       "link": "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
@@ -29,7 +29,7 @@
       "createdAt": "2019-07-05T08:11:58.324Z"
     },
     {
-      "likes": [],
+      "likes": [1,2,3,4,5,6,7],
       "_id": "5d1f0611d321eb4bdcd707dd",
       "name": "Байкал",
       "link": "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
@@ -43,7 +43,7 @@
       "createdAt": "2019-07-05T08:10:57.741Z"
     },
     {
-      "likes": [],
+      "likes": [1,2],
       "_id": "5d1f064ed321eb4bdcd707de",
       "name": "Архыз",
       "link": "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
@@ -57,7 +57,7 @@
       "createdAt": "2019-07-05T08:11:58.324Z"
     },
     {
-      "likes": [],
+      "likes": [1,2,3,4,5,6,7,8,9],
       "_id": "5d1f0611d321eb4bdcd707dd",
       "name": "Байкал",
       "link": "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
@@ -71,7 +71,7 @@
       "createdAt": "2019-07-05T08:10:57.741Z"
     },
     {
-      "likes": [],
+      "likes": [1,2,3,4,5],
       "_id": "5d1f064ed321eb4bdcd707de",
       "name": "Архыз",
       "link": "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
@@ -85,9 +85,9 @@
       "createdAt": "2019-07-05T08:11:58.324Z"
     }
   ],
-  "meы": {
-    "name": "аротоёё",
-    "about": "ацуацаацуа",
+  "me": {
+    "name": "Фасолькин",
+    "about": "пиноккио",
     "avatar": "https://forum.flin-rp.com/data/avatars/o/13/13390.jpg?1598937683",
     "_id": "e20537ed11237f86bbb20ccb",
     "cohort": "cohort47",

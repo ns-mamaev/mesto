@@ -10,33 +10,44 @@ export default class Api {
         authorization: this._headers.authorization
       }
     })
-      .then(res => {
-        if (res.ok) {
-          return res.json()
-        }
-        return Promise.reject(`Ошибка ${res.status}`)
-      })
+      .then(res => this._handleResponse(res));
+  }
+
+  _handleResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка ${res.status}`);
   }
 
   getUserInfo() {
-    return this._getData('/me')
+    return this._getData('/me');
   }
 
   getInitialCards() {
-    return this._getData('/cards')
+    return this._getData('/cards');
   }
 
   changeUserInfo(data) {
     return fetch(`${this._baseUrl}/me`, {
-        method: 'PATCH',
-        headers: this._headers,
-        body: JSON.stringify(data)
-      })
-        .then(res => {
-          if (res.ok) {
-            return res.json()
-          }
-          return Promise.reject(`Ошибка ${res.status}`)
-        }) 
-    }
+      method: 'PATCH',
+      headers: this._headers,
+      body: JSON.stringify(data)
+    })
+      .then(res => this._handleResponse(res));
+  }    
+  
+  addCard(data) {
+    return fetch(`${this._baseUrl}/cards`, {
+      method: 'POST',
+      headers: this._headers,
+      body: JSON.stringify(Object.assign(data, 
+        {
+          id: Date.now(),
+          likes: [],
+        }
+      ))
+    })
+    .then(res => this._handleResponse(res));
+  }  
 }

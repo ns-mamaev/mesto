@@ -1,13 +1,15 @@
 export default class Card {
-  constructor({name, link}, config, handleCardClick) {
+  constructor({name, link, likes}, config, handleCardClick) {
     this._cardName = name;
     this._cardImgLink = link;
+    this._likesCount = likes.length;
 
     this._templateSelector = config.templateSelector;
     this._cardSelector = config.cardSelector;
     this._titleSelector = config.titleSelector;
     this._imageSelector = config.imageSelector;
     this._btnLikeSelector = config.btnLikeSelector;
+    this._likesCounterSelector = config.likesCounterSelector;
     this._activeLikeClass = config.activeLikeClass;
     this._btnDeleteSelector = config.btnDeleteSelector;
 
@@ -30,6 +32,7 @@ export default class Card {
     this._elementTitle = this._element.querySelector(this._titleSelector);
     this._elementImg = this._element.querySelector(this._imageSelector);
     this._elementlikeButton = this._element.querySelector(this._btnLikeSelector);
+    this._elementLikesCount = this._element.querySelector(this._likesCounterSelector);
     this._elementRemoveButton = this._element.querySelector(this._btnDeleteSelector);
 
     this._setEventListeners();
@@ -37,6 +40,7 @@ export default class Card {
     this._elementTitle.textContent = this._cardName;
     this._elementImg.src = this._cardImgLink;
     this._elementImg.alt = this._cardName;
+    this._elementLikesCount.textContent = this._likesCount;
     
     return this._element;
   }

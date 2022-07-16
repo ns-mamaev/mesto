@@ -21,7 +21,9 @@
 @import url(../blocks/photo-card/__image/photo-card__image.css);
 @import url(../blocks/photo-card/__caption/photo-card__caption.css);
 @import url(../blocks/photo-card/__title/photo-card__title.css);
+@import url(../blocks/photo-card/__likes-wrapper/photo-card__likes-wrapper.css);
 @import url(../blocks/photo-card/__like-button/photo-card__like-button.css);
+@import url(../blocks/photo-card/__likes-counter/photo-card__likes-counter.css);
 @import url(../blocks/photo-card/__like-button/_liked/photo-card__like-button_liked.css);
 @import url(../blocks/photo-card/__delete-button/photo-card__delete-button.css);
 
@@ -44,3 +46,4 @@
 @import url(../blocks/form/__button/form__button.css);
 @import url(../blocks/popup/__zoomed-image/popup__zoomed-image.css);
 @import url(../blocks/popup/__zomed-image-caption/popup__zoomed-image-caption.css);
+

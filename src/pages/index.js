@@ -48,7 +48,7 @@ api.getUserInfo()
   })
   .catch(err => console.log(`Данные профиля недоступны: ${err}`)); 
 
-//Переписать 
+  
 const handleProfileFormSubmit = (inputsValues) => {
   api.changeUserInfo(inputsValues)
     .then((res) => {
@@ -90,6 +90,7 @@ const createCard = (cardData) => {
     titleSelector: selectors.cardTitle,
     imageSelector: selectors.cardImage,
     btnLikeSelector: selectors.cardLike,
+    likesCounterSelector: selectors.cardLikesCount,
     activeLikeClass: selectors.cardLikeActive,
     btnDeleteSelector: selectors.cardDelete,
   },
@@ -98,8 +99,14 @@ const createCard = (cardData) => {
   return card.generateCard();
 };
 
-const addCard = (cardData) => cardList.addItem(createCard(cardData));
+const renderCard = (cardData) => cardList.addItem(createCard(cardData));
 
+const addCard = (data) => {
+  api.addCard(data)
+    .then(data => renderCard(data))
+    .catch(err => console.log(`Ошибка добавления карточки: ${err}`));
+}
+ 
 api.getInitialCards()
   .then(cards => {
     cardList.renderItems(cards)
@@ -107,7 +114,7 @@ api.getInitialCards()
   .catch(err => console.log(`ошибка получения карточек: ${err}`));
 
 const cardList = new Section({
-  renderer: addCard,
+  renderer: renderCard,
 }, selectors.cardsList);
 
 const cardAddButton = document.querySelector(selectors.addCardButton);

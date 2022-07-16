@@ -1,30 +1,3 @@
-// export const initialCards = [
-//   {
-//     name: 'Архыз',
-//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-//   },
-//   {
-//     name: 'Челябинская область',
-//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-//   },
-//   {
-//     name: 'Иваново',
-//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-//   },
-//   {
-//     name: 'Камчатка',
-//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-//   },
-//   {
-//     name: 'Холмогорский район',
-//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-//   },
-//   {
-//     name: 'Байкал',
-//     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-//   } 
-// ];
-
 export const validationSettings = {
   formSelector: '.form',
   inputSelector: '.form__item',
@@ -52,6 +25,7 @@ export const selectors = {
   cardImage: '.photo-card__image',
   cardLike: '.photo-card__like-button',
   cardLikeActive: 'photo-card__like-button_liked',
+  cardLikesCount: '.photo-card__likes-counter',
   cardDelete: '.photo-card__delete-button',
   popupImage: '.popup_content_zoomed-card-image',
   popupImageZoomedImg: '.popup__zoomed-image',
