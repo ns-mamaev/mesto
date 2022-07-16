@@ -1,6 +1,5 @@
 import './index.css';
 import {
-  initialCards,
   validationSettings,
   selectors,
 } from '../utils/constants.js'
@@ -10,6 +9,18 @@ import PopupWithImage from '../components/PopupWithImage.js';
 import PopupWithForm from '../components/PopupWithForm.js';
 import Section from '../components/Section.js';
 import UserInfo from '../components/UserInfo.js';
+import Api from '../components/Api.js';
+
+//Api
+
+const api = new Api({
+  baseUrl: 'http://localhost:3000/v1/cohort-47',
+  headers: {
+    authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6',
+    'Content-Type': 'application/json'
+  }
+});
+
 
 //validation
 
@@ -29,6 +40,14 @@ enableValidation(validationSettings);
 
 //profile edit
 const profile = new UserInfo(selectors);
+
+api.getUserInfo()
+  .then(res => {
+    profile.setUserInfo(res);
+    profile.setAvatar(res);
+  })
+  .catch(err => console.log(`Данные профиля недоступны: ${err}`)); 
+
 
 const handleProfileFormSubmit = (inputsValues) => {
   profile.setUserInfo(inputsValues)
@@ -76,12 +95,16 @@ const createCard = (cardData) => {
 
 const addCard = (cardData) => cardList.addItem(createCard(cardData));
 
+api.getInitialCards()
+  .then(cards => {
+    console.log(cards)
+    cardList.renderItems(cards)
+  })
+  .catch(err => console.log(`ошибка получения карточек: ${err}`));
+
 const cardList = new Section({
-  items: initialCards,
   renderer: addCard,
 }, selectors.cardsList);
-
-cardList.renderItems();
 
 const cardAddButton = document.querySelector(selectors.addCardButton);
 
