@@ -123,12 +123,24 @@
         "cohort": "local"
       },
       "createdAt": "2019-07-05T08:11:58.324Z"
+    },
+    {
+      "name": "Еще пёс",
+      "link": "https://zooblog.ru/uploads/posts/2013-08/1376674684_dapper-12.jpg",
+      "id": 1658000320168,
+      "likes": []
+    },
+    {
+      "name": "песель",
+      "link": "https://zooblog.ru/uploads/posts/2013-08/1376674684_dapper-12.jpg",
+      "id": 1658000326303,
+      "likes": []
     }
   ],
   "me": {
-    "name": "WednesDay",
-    "about": "my dudes",
-    "avatar": "https://cdn.shazoo.ru/500406_q17nGVQON2_screen_shot_2020_07_15_at_112437_am.jpg",
+    "name": "Пёс",
+    "about": "Пёсыч",
+    "avatar": "https://i.pinimg.com/736x/6c/76/d2/6c76d2c36188b8a62bea945710204fa1.jpg",
     "_id": "e20537ed11237f86bbb20ccb",
     "cohort": "cohort47",
     "id": 1

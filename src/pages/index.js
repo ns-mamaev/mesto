@@ -77,7 +77,31 @@ profileEditButton.addEventListener('click', () => {
   popupProfile.open();
 });
 
-//confirmation popup (нужен класс наследник)
+// avatar popup
+
+const changeAvatar = (data) => {
+  api.changeUserInfo(data)
+    .then(res => profile.setAvatar(res))
+    .catch(err => console.log(`Невозможно обновить аватар: ${err}`));
+}
+
+const popupAvatar = new PopupWithForm({
+  popupSelector: selectors.popupAvatar,
+  closeButtonSelector: selectors.closeButton,
+  openedClass: selectors.openedPopupClass,
+  formSelector: selectors.formSelector,
+  inputSelector: selectors.inputSelector
+}, changeAvatar);
+popupAvatar.setEventListeners();
+
+const avatarEditButton = document.querySelector(selectors.avatarEditButton);
+avatarEditButton.addEventListener('click', () => {
+  formValidators['edit-avatar'].resetValidation();
+  popupAvatar.open();
+});
+
+
+//confirmation popup
 
 const confirmationPopup = new PopupWithConfirmation({
   popupSelector: selectors.popupConfirmation,

@@ -12,7 +12,9 @@
     </header>
     <main class="content">
       <section class="profile">
-        <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар профиля" class="profile__avatar">
+        <a href="#" class="profile__avatar-wrapper">
+          <img src="<%=require('./images/avatar.jpg')%>" alt="Аватар профиля" class="profile__avatar">
+        </a>  
         <div class="profile__info">
           <h1 class="profile__name">Никита Мамаев</h1>
           <button type="button" class="profile__edit-button" aria-label="edit profile"></button>
@@ -54,7 +56,7 @@
             <input type="text" class="form__item form__item_content_profile-about" name="about" placeholder="Ваш род деятельности?" required minlength="2" maxlength="200">
             <span class="form__error form__error_field_profile-about"></span>
           </label>
-          <button type="submit" name="profile__save" value="Сохранить" class="form__button">Сохранить</button>
+          <button type="submit" name="profile-save" value="Сохранить" class="form__button">Сохранить</button>
         </form>
       </div>
     </div>
@@ -71,7 +73,20 @@
             <input type="url" class="form__item form__item_content_new-place-link" name="link" placeholder="Ссылка на картинку" required minlength="7">
             <span class="form__error form__error_field_place-link"></span>
           </label>
-          <button type="submit" name="place__create" value="Создать" class="form__button">Создать</button>
+          <button type="submit" name="place-create" value="Создать" class="form__button">Создать</button>
+        </form>
+      </div>
+    </div>
+    <div class="popup popup_content_edit-avatar">
+      <div class="popup__container">
+        <button aria-label="close popup" class="popup__close-button"></button>
+        <form class="form form_content_edit-avatar" name="edit-avatar" novalidate>
+          <h3 class="form__title">Обновить аватар</h3>
+          <label class="form__field">
+            <input type="url" class="form__item form__item_content_avatar-link" name="avatar" placeholder="Ссылка на аватар" required minlength="7">
+            <span class="form__error form__error_field_avatar-link"></span>
+          </label>
+          <button type="submit" name="avatar-edit" value="Сохранить" class="form__button">Сохранить</button>
         </form>
       </div>
     </div>
@@ -82,7 +97,7 @@
         <h3 class="popup__zoomed-image-caption"></h3>
       </div>
     </div>
-   <div class="popup popup_content_confirmation popup_opened">
+   <div class="popup popup_content_confirmation">
       <div class="popup__container">
         <button aria-label="close popup" class="popup__close-button"></button>
         <form class="form form_content_comfirmation" name="confirm" novalidate>

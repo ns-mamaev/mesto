@@ -31,6 +31,8 @@ export const selectors = {
   popupImageZoomedImg: '.popup__zoomed-image',
   popupImageCaption: '.popup__zoomed-image-caption',
   openedPopupClass: 'popup_opened',
-  popupConfirmation: '.popup_content_confirmation'
+  popupConfirmation: '.popup_content_confirmation',
+  popupAvatar: '.popup_content_edit-avatar',
+  avatarEditButton: '.profile__avatar-wrapper'
 };
 
