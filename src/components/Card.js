@@ -1,9 +1,9 @@
 export default class Card {
-  constructor({name, link, likes, _id, owner}, config, handleCardClick, userId) {
+  constructor({name, link, likes, id, owner}, config, handleCardClick, userId, handleRemove) {
     this._cardName = name;
     this._cardImgLink = link;
     this._likesCount = likes.length;
-    this._id = _id;
+    this._id = id;
     this._owner = owner;
     this._isOwnCard = owner._id === userId ? true : false;
 
@@ -17,6 +17,7 @@ export default class Card {
     this._btnDeleteSelector = config.btnDeleteSelector;
 
     this._handleCardClick = handleCardClick;
+    this._handleRemove = handleRemove;
   }
 
   getOwnerId() {
@@ -67,7 +68,10 @@ export default class Card {
 
     if (this._isOwnCard) {
       this._elementRemoveButton.addEventListener('click', () => {
-        this._handleRemove();
+        this._handleRemove(this._id)
+          .then(() => {
+            this._removeCard()
+          })
       });
     }
   }

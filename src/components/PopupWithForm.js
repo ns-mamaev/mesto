@@ -5,7 +5,8 @@ export default class PopupWithForm extends Popup {
     super(config);
     this._handleSubmit = submitHandler;
     this._form = this._popupElement.querySelector(config.formSelector);
-    this._inputList = this._form.querySelectorAll(config.inputSelector) 
+    this._submitButton = this._form.querySelector(config.submitButtonSelector);
+    this._inputList = this._form.querySelectorAll(config.inputSelector); 
   }
 
   _getInputValues() {
@@ -24,19 +25,21 @@ export default class PopupWithForm extends Popup {
   _submit(evt) {
     evt.preventDefault();
     this._handleSubmit(this._getInputValues());
+    this.close();
   }
 
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener('submit', (evt) => {
       this._submit(evt);
-      this.close();
     });
   }
 
   close() {
     super.close();
-    this._form.reset();
+    setTimeout(() => {
+      this._form.reset();
+    }, 500) //сброс формы только после окончания анимации
   }
 
 }

@@ -45,6 +45,7 @@
 @import url(../blocks/form/__error/form__error.css);
 @import url(../blocks/form/__error/_visible/form__error_visible.css);
 @import url(../blocks/form/__button/form__button.css);
+@import url(../blocks/form/__button/_state/form__button_state_loading.css);
 @import url(../blocks/popup/__zoomed-image/popup__zoomed-image.css);
 @import url(../blocks/popup/__zomed-image-caption/popup__zoomed-image-caption.css);
 

@@ -11,6 +11,7 @@ export const selectors = {
   formSelector: '.form',
   inputSelector: '.form__item',
   closeButton: '.popup__close-button',
+  submitButton: '.form__button',
   popupProfile: '.popup_content_edit-profile',
   profileEditButton: '.profile__edit-button',
   avatarSelector: '.profile__avatar',

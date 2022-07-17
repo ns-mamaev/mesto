@@ -14,7 +14,9 @@ export default class UserInfo {
     return this._user._id;
   }
 
-  setUserInfo({ name, about }) {
+  setUserInfo({name, about}) {
+    this._user.name = name;
+    this._user.about = about;
     this._nameField.textContent = name;
     this._aboutField.textContent = about;
   }

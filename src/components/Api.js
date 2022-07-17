@@ -1,3 +1,5 @@
+import {profile} from '../pages/index.js'
+
 export default class Api {
   constructor({baseUrl, headers}) {
     this._baseUrl = baseUrl;
@@ -45,9 +47,19 @@ export default class Api {
         {
           id: Date.now(),
           likes: [],
+          owner: profile._user  //удалить
         }
       ))
     })
     .then(res => this._handleResponse(res));
   }
+
+  deleteCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}`, {
+      method: 'DELETE',
+      headers: {
+        authorization: this._headers.authorization
+      }
+    })
+  }  
 }

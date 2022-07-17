@@ -3,47 +3,6 @@
     {
       "likes": [
         1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9,
-        10,
-        11,
-        12
-      ],
-      "id": "1",
-      "name": "Байкал",
-      "link": "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-      "owner": {
-        "name": "Jacques Cousteau",
-        "about": "Sailor, researcher",
-        "avatar": "https://pictures.s3.yandex.net/frontend-developer/ava.jpg",
-        "_id": "ef5f7423f7f5e22bef4ad607",
-        "cohort": "local"
-      },
-      "createdAt": "2019-07-05T08:10:57.741Z"
-    },
-    {
-      "likes": [],
-      "id": "2",
-      "name": "Архыз",
-      "link": "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
-      "owner": {
-        "name": "Jacques Cousteau",
-        "about": "Sailor, researcher",
-        "avatar": "https://pictures.s3.yandex.net/frontend-developer/ava.jpg",
-        "_id": "ef5f7423f7f5e22bef4ad607",
-        "cohort": "local"
-      },
-      "createdAt": "2019-07-05T08:11:58.324Z"
-    },
-    {
-      "likes": [
-        1,
         2
       ],
       "id": "4",
@@ -59,29 +18,19 @@
       "createdAt": "2019-07-05T08:11:58.324Z"
     },
     {
-      "likes": [
-        1,
-        2,
-        3,
-        4,
-        5
-      ],
-      "id": "6",
-      "name": "Архыз",
-      "link": "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
+      "name": "ыыыы",
+      "link": "https://avatars.mds.yandex.net/get-zen_doc/1219682/pub_5eaa7423102eee24419d5607_5eaa74d77e79087ec3668df9/scale_1200",
+      "id": 1658076655975,
+      "likes": [],
       "owner": {
-        "name": "Jacques Cousteau",
-        "about": "Sailor, researcher",
-        "avatar": "https://pictures.s3.yandex.net/frontend-developer/ava.jpg",
-        "_id": "bada55",
-        "cohort": "local"
-      },
-      "createdAt": "2019-07-05T08:11:58.324Z"
+        "name": "вввыыыы",
+        "about": "тооввввыыы"
+      }
     }
   ],
   "me": {
-    "name": "Никитка",
-    "about": "азаа",
+    "name": "ewdwdwedfw",
+    "about": "regegergreg",
     "avatar": "https://i.pinimg.com/736x/6c/76/d2/6c76d2c36188b8a62bea945710204fa1.jpg",
     "_id": "bada55",
     "cohort": "cohort47"
