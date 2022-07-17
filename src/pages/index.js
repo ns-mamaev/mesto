@@ -40,12 +40,14 @@ const enableValidation = (settings) => {
 enableValidation(validationSettings);
 
 //profile edit
-const profile = new UserInfo(selectors);
+let profile;
 
 api.getUserInfo()
   .then(res => {
+    profile = new UserInfo(selectors, res)
     profile.setUserInfo(res);
     profile.setAvatar(res);
+    console.log(profile)
   })
   .catch(err => console.log(`Данные профиля недоступны: ${err}`)); 
 
@@ -108,16 +110,19 @@ const confirmationPopup = new PopupWithConfirmation({
   closeButtonSelector: selectors.closeButton,
   formSelector: selectors.formSelector,
   openedClass: selectors.openedPopupClass
-}, () => {console.log('Клац!')})
+})
 
 confirmationPopup.setEventListeners();
-
 
 //Add card
 
 const handleCardClick = (name, link) => {
   imagePopup.open(name, link);
 };
+
+const handleRemove = () => {
+  confirmationPopup.open()
+}
 
 const createCard = (cardData) => {
   const card = new Card(cardData, 
@@ -131,7 +136,7 @@ const createCard = (cardData) => {
     activeLikeClass: selectors.cardLikeActive,
     btnDeleteSelector: selectors.cardDelete,
   },
-  handleCardClick);
+  handleCardClick, profile.getUserId());
 
   return card.generateCard();
 };

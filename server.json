@@ -15,7 +15,7 @@
         11,
         12
       ],
-      "_id": "5d1f0611d321eb4bdcd707dd",
+      "id": "1",
       "name": "Байкал",
       "link": "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
       "owner": {
@@ -29,7 +29,7 @@
     },
     {
       "likes": [],
-      "_id": "5d1f064ed321eb4bdcd707de",
+      "id": "2",
       "name": "Архыз",
       "link": "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
       "owner": {
@@ -40,35 +40,13 @@
         "cohort": "local"
       },
       "createdAt": "2019-07-05T08:11:58.324Z"
-    },
-    {
-      "likes": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7
-      ],
-      "_id": "5d1f0611d321eb4bdcd707dd",
-      "name": "Байкал",
-      "link": "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-      "owner": {
-        "name": "Jacques Cousteau",
-        "about": "Sailor, researcher",
-        "avatar": "https://pictures.s3.yandex.net/frontend-developer/ava.jpg",
-        "_id": "ef5f7423f7f5e22bef4ad607",
-        "cohort": "local"
-      },
-      "createdAt": "2019-07-05T08:10:57.741Z"
     },
     {
       "likes": [
         1,
         2
       ],
-      "_id": "5d1f064ed321eb4bdcd707de",
+      "id": "4",
       "name": "Архыз",
       "link": "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
       "owner": {
@@ -79,30 +57,6 @@
         "cohort": "local"
       },
       "createdAt": "2019-07-05T08:11:58.324Z"
-    },
-    {
-      "likes": [
-        1,
-        2,
-        3,
-        4,
-        5,
-        6,
-        7,
-        8,
-        9
-      ],
-      "_id": "5d1f0611d321eb4bdcd707dd",
-      "name": "Байкал",
-      "link": "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg",
-      "owner": {
-        "name": "Jacques Cousteau",
-        "about": "Sailor, researcher",
-        "avatar": "https://pictures.s3.yandex.net/frontend-developer/ava.jpg",
-        "_id": "ef5f7423f7f5e22bef4ad607",
-        "cohort": "local"
-      },
-      "createdAt": "2019-07-05T08:10:57.741Z"
     },
     {
       "likes": [
@@ -112,37 +66,24 @@
         4,
         5
       ],
-      "_id": "5d1f064ed321eb4bdcd707de",
+      "id": "6",
       "name": "Архыз",
       "link": "https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg",
       "owner": {
         "name": "Jacques Cousteau",
         "about": "Sailor, researcher",
         "avatar": "https://pictures.s3.yandex.net/frontend-developer/ava.jpg",
-        "_id": "ef5f7423f7f5e22bef4ad607",
+        "_id": "bada55",
         "cohort": "local"
       },
       "createdAt": "2019-07-05T08:11:58.324Z"
-    },
-    {
-      "name": "Еще пёс",
-      "link": "https://zooblog.ru/uploads/posts/2013-08/1376674684_dapper-12.jpg",
-      "id": 1658000320168,
-      "likes": []
-    },
-    {
-      "name": "песель",
-      "link": "https://zooblog.ru/uploads/posts/2013-08/1376674684_dapper-12.jpg",
-      "id": 1658000326303,
-      "likes": []
     }
   ],
   "me": {
-    "name": "Пёс",
-    "about": "Пёсыч",
+    "name": "Никитка",
+    "about": "азаа",
     "avatar": "https://i.pinimg.com/736x/6c/76/d2/6c76d2c36188b8a62bea945710204fa1.jpg",
-    "_id": "e20537ed11237f86bbb20ccb",
-    "cohort": "cohort47",
-    "id": 1
+    "_id": "bada55",
+    "cohort": "cohort47"
   }
 }
