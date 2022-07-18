@@ -17,12 +17,12 @@ export default class Card {
     this._btnDeleteSelector = config.btnDeleteSelector;
 
     this._handleCardClick = handleCardClick;
-    this._handleRemove = handleRemove;
+    this._handleRemoveCard = handleRemove;
   }
 
-  getOwnerId() {
-    return this._owner._id;
-  }
+  // getOwnerId() {
+  //   return this._owner._id;
+  // }
 
   _getTemplate() {
     const cardElement = document
@@ -32,6 +32,14 @@ export default class Card {
       .cloneNode(true)
 
     return cardElement;  
+  }
+
+  getElement() {
+    return this._element;
+  }
+
+  getId() {
+    return this._id;
   }
 
   generateCard() {
@@ -44,7 +52,7 @@ export default class Card {
     this._elementRemoveButton = this._element.querySelector(this._btnDeleteSelector);
     
     if (!this._isOwnCard) {
-      this._elementRemoveButton.style.display = 'none';  
+      this._elementRemoveButton.remove();
       this._elementRemoveButton = null;
     }
 
@@ -68,10 +76,7 @@ export default class Card {
 
     if (this._isOwnCard) {
       this._elementRemoveButton.addEventListener('click', () => {
-        this._handleRemove(this._id)
-          .then(() => {
-            this._removeCard()
-          })
+        this._handleRemoveCard(this);
       });
     }
   }
@@ -80,7 +85,7 @@ export default class Card {
     this._elementlikeButton.classList.toggle(this._activeLikeClass);
   }
 
-  _removeCard() {
+  removeCard() {
     this._element.remove();
     this._element = null;
   }

@@ -99,8 +99,12 @@ avatarEditButton.addEventListener('click', () => {
 
 //confirmation popup
 
-const confirmRemoving = (id) => {
-  return api.deleteCard(id);
+const confirmRemoving = (card) => {
+  return api.deleteCard(card.getId())
+    .then(() => {
+      card.removeCard();
+      Promise.resolve()
+    })
 }
 
 const confirmationPopup = new PopupWithConfirmation({
@@ -119,9 +123,9 @@ const handleCardClick = (name, link) => {
   imagePopup.open(name, link);
 };
 
-const handleRemove = (id) => {
+const handleRemoveCard = (card) => {
   confirmationPopup.open()
-  return confirmationPopup.handleSubmit(id);
+  confirmationPopup.setData(card)
 }
 
 const createCard = (cardData) => {
@@ -136,7 +140,7 @@ const createCard = (cardData) => {
     activeLikeClass: selectors.cardLikeActive,
     btnDeleteSelector: selectors.cardDelete
   },
-  handleCardClick, profile.getUserId(), handleRemove);
+  handleCardClick, profile.getUserId(), handleRemoveCard);
 
   return card.generateCard();
 };
