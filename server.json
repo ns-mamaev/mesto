@@ -18,19 +18,35 @@
       "createdAt": "2019-07-05T08:11:58.324Z"
     },
     {
-      "name": "ыыыы",
-      "link": "https://avatars.mds.yandex.net/get-zen_doc/1219682/pub_5eaa7423102eee24419d5607_5eaa74d77e79087ec3668df9/scale_1200",
-      "id": 1658076655975,
+      "name": "Бегит",
+      "link": "https://i.pinimg.com/736x/89/59/ac/8959acb5d4552f9a03cb4bbbb6763fba--akita-puppies-akita-dog.jpg",
+      "id": 1658171713052,
       "likes": [],
       "owner": {
-        "name": "вввыыыы",
-        "about": "тооввввыыы"
+        "name": "ГУсь",
+        "about": "путешествует",
+        "avatar": "https://i.pinimg.com/736x/6c/76/d2/6c76d2c36188b8a62bea945710204fa1.jpg",
+        "_id": "bada55",
+        "cohort": "cohort47"
+      }
+    },
+    {
+      "name": "гусь",
+      "link": "https://jooinn.com/images/goose-18.jpg",
+      "id": 1658171851598,
+      "likes": [],
+      "owner": {
+        "name": "ГУсь",
+        "about": "путешествует",
+        "avatar": "https://i.pinimg.com/736x/6c/76/d2/6c76d2c36188b8a62bea945710204fa1.jpg",
+        "_id": "bada55",
+        "cohort": "cohort47"
       }
     }
   ],
   "me": {
-    "name": "Никита",
-    "about": "Мамаев",
+    "name": "ГУсь",
+    "about": "путешествует",
     "avatar": "https://i.pinimg.com/736x/6c/76/d2/6c76d2c36188b8a62bea945710204fa1.jpg",
     "_id": "bada55",
     "cohort": "cohort47"

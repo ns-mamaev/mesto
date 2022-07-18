@@ -133,13 +133,12 @@ api.getUserInfo()
     profile = new UserInfo(selectors, res)
     profile.setUserInfo(res);
     profile.setAvatar(res);
-    api.getInitialCards()
-      .then(cards => {
-        cardList.renderItems(cards)
-      })
-      .catch(err => console.log(`ошибка получения карточек: ${err}`));
+    return api.getInitialCards()
   })
-  .catch(err => console.log(`Данные профиля недоступны: ${err}`)); 
+  .then(cards => {
+    cardList.renderItems(cards)
+  })
+  .catch(err => console.log(`Ошибка запроса к серверу: ${err}`)); 
 
   
 const cardList = new Section(selectors.cardsList, {
