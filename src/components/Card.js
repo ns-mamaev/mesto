@@ -1,36 +1,23 @@
 export default class Card {
-  constructor({name, link, likes, id, owner}, config, handleCardClick, userId, handleRemove) {
-    this._cardName = name;
-    this._cardImgLink = link;
-    this._likesCount = likes.length;
-    this._id = id;
-    this._owner = owner;
-    this._isOwnCard = owner._id === userId ? true : false;
+  constructor(cardData, {config, clickOnImgHandler, clickOnRemoveButtonHandler, currentUserId}) {
+    this._cardName = cardData.name;
+    this._cardImgLink = cardData.link;
+    this._likesCount = cardData.likes.length;
+    this._id = cardData.id;
+    this._isOwnCard = cardData.owner._id === currentUserId ? true : false;
+    
+    this._config = config;
 
-    this._templateSelector = config.templateSelector;
-    this._cardSelector = config.cardSelector;
-    this._titleSelector = config.titleSelector;
-    this._imageSelector = config.imageSelector;
-    this._btnLikeSelector = config.btnLikeSelector;
-    this._likesCounterSelector = config.likesCounterSelector;
-    this._activeLikeClass = config.activeLikeClass;
-    this._btnDeleteSelector = config.btnDeleteSelector;
-
-    this._handleCardClick = handleCardClick;
-    this._handleRemoveCard = handleRemove;
+    this._handleClickOnImg = clickOnImgHandler;
+    this._handleClickOnRemoveButton = clickOnRemoveButtonHandler;
   }
-
-  // getOwnerId() {
-  //   return this._owner._id;
-  // }
 
   _getTemplate() {
     const cardElement = document
-      .querySelector(this._templateSelector)
+      .querySelector(this._config.cardTemplate)
       .content
-      .querySelector(this._cardSelector)
+      .querySelector(this._config.card)
       .cloneNode(true)
-
     return cardElement;  
   }
 
@@ -45,12 +32,13 @@ export default class Card {
   generateCard() {
     this._element = this._getTemplate();
     
-    this._elementTitle = this._element.querySelector(this._titleSelector);
-    this._elementImg = this._element.querySelector(this._imageSelector);
-    this._elementlikeButton = this._element.querySelector(this._btnLikeSelector);
-    this._elementLikesCount = this._element.querySelector(this._likesCounterSelector);
-    this._elementRemoveButton = this._element.querySelector(this._btnDeleteSelector);
+    this._elementTitle = this._element.querySelector(this._config.cardTitle);
+    this._elementImg = this._element.querySelector(this._config.cardImage);
+    this._elementlikeButton = this._element.querySelector(this._config.cardLikeButton);
+    this._elementLikesCount = this._element.querySelector(this._config.cardLikesCount);
+    this._elementRemoveButton = this._element.querySelector(this._config.cardDeleteButton);
     
+    // исключаем возможность отправки запроса на удаление чужих карточек
     if (!this._isOwnCard) {
       this._elementRemoveButton.remove();
       this._elementRemoveButton = null;
@@ -68,7 +56,7 @@ export default class Card {
 
   _setEventListeners() {
     this._elementImg.addEventListener('click', () => {
-      this._handleCardClick(this._cardName, this._cardImgLink);
+      this._handleClickOnImg(this._cardName, this._cardImgLink);
     });
     this._elementlikeButton.addEventListener('click', () => {
       this._handleLike();
@@ -76,13 +64,13 @@ export default class Card {
 
     if (this._isOwnCard) {
       this._elementRemoveButton.addEventListener('click', () => {
-        this._handleRemoveCard(this);
+        this._handleClickOnRemoveButton(this);
       });
     }
   }
 
   _handleLike() {
-    this._elementlikeButton.classList.toggle(this._activeLikeClass);
+    this._elementlikeButton.classList.toggle(this._config.cardLikeActiveClass);
   }
 
   removeCard() {

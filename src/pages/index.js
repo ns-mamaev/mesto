@@ -1,8 +1,5 @@
 import './index.css';
-import {
-  validationSettings,
-  selectors,
-} from '../utils/constants.js'
+import {validationSettings, selectors} from '../utils/constants.js'
 import FormValidator from '../components/FormValidator.js';
 import Card from '../components/Card.js';
 import PopupWithImage from '../components/PopupWithImage.js';
@@ -22,9 +19,6 @@ const api = new Api({
   }
 });
 
-
-//validation // что с валидацией пустой формы? Убрать?
-
 const formValidators = {};
 const enableValidation = (settings) => {
   const formList = document.querySelectorAll(settings.formSelector);
@@ -42,7 +36,7 @@ enableValidation(validationSettings);
 //profile edit
 let profile;
   
-const handleProfileFormSubmit = (inputsValues) => {
+const editProfile = (inputsValues) => {
   api.changeUserInfo(inputsValues)
     .then((res) => {
       const {name, about} = res;
@@ -51,15 +45,10 @@ const handleProfileFormSubmit = (inputsValues) => {
     .catch(err => console.log(`Невозможно обновить профиль: ${err}`))
 };
 
-const popupProfile = new PopupWithForm({
-  popupSelector: selectors.popupProfile,
-  closeButtonSelector: selectors.closeButton,
-  openedClass: selectors.openedPopupClass,
-  formSelector: selectors.formSelector,
-  inputSelector: selectors.inputSelector,
-  submitButtonSelector: selectors.submitButton
-}, 
-handleProfileFormSubmit);
+const popupProfile = new PopupWithForm(selectors.popupProfile, {
+  config: selectors,
+  submitHandler: editProfile
+});
 popupProfile.setEventListeners();
 
 const profileEditButton = document.querySelector(selectors.profileEditButton);
@@ -80,14 +69,10 @@ const changeAvatar = (data) => {
     .catch(err => console.log(`Невозможно обновить аватар: ${err}`));
 }
 
-const popupAvatar = new PopupWithForm({
-  popupSelector: selectors.popupAvatar,
-  closeButtonSelector: selectors.closeButton,
-  openedClass: selectors.openedPopupClass,
-  formSelector: selectors.formSelector,
-  inputSelector: selectors.inputSelector,
-  submitButtonSelector: selectors.submitButton
-}, changeAvatar);
+const popupAvatar = new PopupWithForm(selectors.popupAvatar, {
+  config: selectors,
+  submitHandler: changeAvatar
+});
 popupAvatar.setEventListeners();
 
 const avatarEditButton = document.querySelector(selectors.avatarEditButton);
@@ -96,10 +81,9 @@ avatarEditButton.addEventListener('click', () => {
   popupAvatar.open();
 });
 
-
 //confirmation popup
 
-const confirmRemoving = (card) => {
+const removeCard = (card) => {
   return api.deleteCard(card.getId())
     .then(() => {
       card.removeCard();
@@ -107,41 +91,30 @@ const confirmRemoving = (card) => {
     })
 }
 
-const confirmationPopup = new PopupWithConfirmation({
-  popupSelector: selectors.popupConfirmation,
-  closeButtonSelector: selectors.closeButton,
-  formSelector: selectors.formSelector,
-  openedClass: selectors.openedPopupClass,
-  submitButtonSelector: selectors.submitButton
-}, confirmRemoving)
-
+const confirmationPopup = new PopupWithConfirmation(selectors.confirmationPopup, {
+  config: selectors,
+  submitHandler: removeCard
+})
 confirmationPopup.setEventListeners();
 
 //Add card
 
-const handleCardClick = (name, link) => {
+const zoomImage = (name, link) => {
   imagePopup.open(name, link);
 };
 
-const handleRemoveCard = (card) => {
+const handleClickOnDeleteIcon = (card) => {
   confirmationPopup.open()
   confirmationPopup.setData(card)
 }
 
 const createCard = (cardData) => {
-  const card = new Card(cardData, 
-  {
-    templateSelector: selectors.cardTemplate,
-    cardSelector: selectors.card,
-    titleSelector: selectors.cardTitle,
-    imageSelector: selectors.cardImage,
-    btnLikeSelector: selectors.cardLike,
-    likesCounterSelector: selectors.cardLikesCount,
-    activeLikeClass: selectors.cardLikeActive,
-    btnDeleteSelector: selectors.cardDelete
-  },
-  handleCardClick, profile.getUserId(), handleRemoveCard);
-
+  const card = new Card(cardData, {
+    config: selectors,
+    clickOnImgHandler: zoomImage,
+    clickOnRemoveButtonHandler: handleClickOnDeleteIcon,
+    currentUserId: profile.getUserId()
+  })
   return card.generateCard();
 };
 
@@ -169,36 +142,27 @@ api.getUserInfo()
   .catch(err => console.log(`Данные профиля недоступны: ${err}`)); 
 
   
-const cardList = new Section({
+const cardList = new Section(selectors.cardsList, {
   renderer: renderCard,
-}, selectors.cardsList);
+});
 
-const cardAddButton = document.querySelector(selectors.addCardButton);
-
-const popupNewCard = new PopupWithForm({
-  popupSelector: selectors.popupAddCard,
-  closeButtonSelector: selectors.closeButton,
-  formSelector: selectors.formSelector,
-  inputSelector: selectors.inputSelector,
-  openedClass: selectors.openedPopupClass,
-  submitButtonSelector: selectors.submitButton
-},
- addCard);
+const popupNewCard = new PopupWithForm(selectors.popupAddCard, {
+  config: selectors,
+  submitHandler: addCard
+})
 popupNewCard.setEventListeners();
 
-const imagePopup = new PopupWithImage({
-  popupSelector: selectors.popupImage,
-  closeButtonSelector: selectors.closeButton,
-  imageSelector: selectors.popupImageZoomedImg,
-  captionSelector: selectors.popupImageCaption,
-  openedClass: selectors.openedPopupClass
+const imagePopup = new PopupWithImage(selectors.popupImage, {
+  config: selectors
 });
 imagePopup.setEventListeners();
 
+const cardAddButton = document.querySelector(selectors.addCardButton);
 cardAddButton.addEventListener('click', () => {
   formValidators['add-card'].resetValidation();
   popupNewCard.open();
 });
+
 
 //убрать
 export {profile}
