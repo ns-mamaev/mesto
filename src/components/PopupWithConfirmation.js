@@ -5,6 +5,7 @@ export default class PopupWithConfirmation extends Popup {
     super(popupSelector, config);
     this._form = this._popupElement.querySelector(config.form);
     this._handleSubmit = submitHandler;
+    this._submitButton = this._form.querySelector(config.submitButton);
   }
 
   setData(data) {
@@ -15,9 +16,15 @@ export default class PopupWithConfirmation extends Popup {
     super.setEventListeners();
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
+      this._submitButton.textContent = 'Выполнение...';
       this._handleSubmit(this._data)
-        .then(() => this.close());
-    })
-  }    
+        .then(() =>{
+          this._submitButton.textContent = 'Выполнено!';
+          this.close()
+          setTimeout(() => {
+            this._submitButton.textContent = 'Да';
+          }, 1000)
+        })
+    });    
+  }
 }
-

@@ -12,9 +12,9 @@ import Api from '../components/Api.js';
 //Api
 
 const api = new Api({
-  baseUrl: 'http://localhost:3000',
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-47',
   headers: {
-    authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6',
+    authorization: 'c057a3e7-5ee0-421c-b032-822b62f6abd9',
     'Content-Type': 'application/json'
   }
 });
@@ -37,7 +37,7 @@ enableValidation(validationSettings);
 let profile;
   
 const editProfile = (inputsValues) => {
-  api.changeUserInfo(inputsValues)
+  return api.changeUserInfo(inputsValues)
     .then((res) => {
       const {name, about} = res;
       profile.setUserInfo({name, about});
@@ -52,7 +52,6 @@ const popupProfile = new PopupWithForm(selectors.popupProfile, {
 popupProfile.setEventListeners();
 
 const profileEditButton = document.querySelector(selectors.profileEditButton);
-
 profileEditButton.addEventListener('click', () => {
   formValidators['edit-profile'].resetValidation();
   popupProfile.setInputValues(profile.getUserInfo());
@@ -62,7 +61,7 @@ profileEditButton.addEventListener('click', () => {
 // avatar popup
 
 const changeAvatar = (data) => {
-  api.changeUserInfo(data)
+  return api.changeAvatar(data)
     .then(res => {
       profile.setAvatar(res);
     })
@@ -87,7 +86,6 @@ const removeCard = (card) => {
   return api.deleteCard(card.getId())
     .then(() => {
       card.removeCard();
-      Promise.resolve()
     })
 }
 
@@ -121,7 +119,7 @@ const createCard = (cardData) => {
 const renderCard = (cardData) => cardList.addItem(createCard(cardData));
 
 const addCard = (data) => {
-  api.addCard(data)
+  return api.addCard(data)
     .then(data => {
       renderCard(data);
     })
@@ -133,6 +131,7 @@ api.getUserInfo()
     profile = new UserInfo(selectors, res)
     profile.setUserInfo(res);
     profile.setAvatar(res);
+    document.querySelector('.page').classList.remove('page_loading');
     return api.getInitialCards()
   })
   .then(cards => {

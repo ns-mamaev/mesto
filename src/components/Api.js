@@ -1,5 +1,3 @@
-import {profile} from '../pages/index.js'
-
 export default class Api {
   constructor({baseUrl, headers}) {
     this._baseUrl = baseUrl;
@@ -23,35 +21,42 @@ export default class Api {
   }
 
   getUserInfo() {
-    return this._getData('/me');
+    return this._getData('/users/me');
   }
 
   getInitialCards() {
     return this._getData('/cards');
   }
 
-  changeUserInfo(data) {
-    return fetch(`${this._baseUrl}/me`, {
+  _changeData(data, path) {
+    return fetch(`${this._baseUrl}${path}`, {
       method: 'PATCH',
       headers: this._headers,
       body: JSON.stringify(data)
     })
       .then(res => this._handleResponse(res));
-  }    
+  }
+
+  changeUserInfo(data) {
+    return this._changeData(data, '/users/me');
+  }
+  
+  changeAvatar(data) {
+    return this._changeData(data, '/users/me/avatar');
+  }
   
   addCard(data) {
     return fetch(`${this._baseUrl}/cards`, {
       method: 'POST',
       headers: this._headers,
-      body: JSON.stringify(Object.assign(data, 
-        {
-          id: Date.now(),
-          likes: [],
-          owner: profile._user  //удалить
-        }
-      ))
+      body: JSON.stringify(data)
     })
     .then(res => this._handleResponse(res));
+  }
+
+  likeCard(id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`)
+      .then(res => this._handleResponse(res))
   }
 
   deleteCard(id) {

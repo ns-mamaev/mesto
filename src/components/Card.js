@@ -3,7 +3,7 @@ export default class Card {
     this._cardName = cardData.name;
     this._cardImgLink = cardData.link;
     this._likesCount = cardData.likes.length;
-    this._id = cardData.id;
+    this._id = cardData._id;
     this._isOwnCard = cardData.owner._id === currentUserId ? true : false;
     
     this._config = config;
