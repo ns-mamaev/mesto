@@ -19,6 +19,8 @@ const api = new Api({
   }
 });
 
+//Validation
+
 const formValidators = {};
 const enableValidation = (settings) => {
   const formList = document.querySelectorAll(settings.formSelector);
@@ -34,7 +36,6 @@ const enableValidation = (settings) => {
 enableValidation(validationSettings);
 
 //profile edit
-let profile;
   
 const editProfile = (inputsValues) => {
   return api.changeUserInfo(inputsValues)
@@ -95,7 +96,20 @@ const confirmationPopup = new PopupWithConfirmation(selectors.confirmationPopup,
 })
 confirmationPopup.setEventListeners();
 
-//Add card
+// zoomed img 
+
+const imagePopup = new PopupWithImage(selectors.popupImage, {
+  config: selectors
+});
+imagePopup.setEventListeners();
+
+const cardAddButton = document.querySelector(selectors.addCardButton);
+cardAddButton.addEventListener('click', () => {
+  formValidators['add-card'].resetValidation();
+  popupNewCard.open();
+});
+
+// card
 
 const zoomImage = (name, link) => {
   imagePopup.open(name, link);
@@ -130,6 +144,20 @@ const addCard = (data) => {
     })
     .catch(err => console.log(`Ошибка добавления карточки: ${err}`));
 }
+
+//new Card Popup
+
+const popupNewCard = new PopupWithForm(selectors.popupAddCard, {
+  config: selectors,
+  submitHandler: addCard
+})
+popupNewCard.setEventListeners();
+
+const cardList = new Section(selectors.cardsList, {
+  renderer: renderCard,
+});
+
+let profile;
  
 api.getUserInfo()
   .then(res => {
@@ -144,28 +172,5 @@ api.getUserInfo()
   })
   .catch(err => console.log(`Ошибка запроса к серверу: ${err}`)); 
 
-  
-const cardList = new Section(selectors.cardsList, {
-  renderer: renderCard,
-});
-
-const popupNewCard = new PopupWithForm(selectors.popupAddCard, {
-  config: selectors,
-  submitHandler: addCard
-})
-popupNewCard.setEventListeners();
-
-const imagePopup = new PopupWithImage(selectors.popupImage, {
-  config: selectors
-});
-imagePopup.setEventListeners();
-
-const cardAddButton = document.querySelector(selectors.addCardButton);
-cardAddButton.addEventListener('click', () => {
-  formValidators['add-card'].resetValidation();
-  popupNewCard.open();
-});
 
 
-//убрать
-export {profile}
