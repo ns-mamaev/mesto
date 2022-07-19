@@ -4,6 +4,13 @@ export default class Api {
     this._headers = headers;
   }
 
+  _handleResponse(res) {
+    if (res.ok) {
+      return res.json();
+    }
+    return Promise.reject(`Ошибка ${res.status}`); //обработка ответа от сервера повторяется, решил выделить в отдельный метод
+  }
+
   _getData(path) {
     return fetch(`${this._baseUrl}${path}`, {
       headers: {
@@ -13,15 +20,8 @@ export default class Api {
       .then(res => this._handleResponse(res));
   }
 
-  _handleResponse(res) {
-    if (res.ok) {
-      return res.json();
-    }
-    return Promise.reject(`Ошибка ${res.status}`);
-  }
-
   getUserInfo() {
-    return this._getData('/users/me');
+    return this._getData('/users/me'); 
   }
 
   getInitialCards() {
@@ -54,9 +54,22 @@ export default class Api {
     .then(res => this._handleResponse(res));
   }
 
-  likeCard(id) {
-    return fetch(`${this._baseUrl}/cards/${id}/likes`)
+  _handleLike(method, id) {
+    return fetch(`${this._baseUrl}/cards/${id}/likes`, {
+      method: method,
+      headers: {
+        authorization: this._headers.authorization
+      }
+    })
       .then(res => this._handleResponse(res))
+  }
+
+  setLike(id) {
+    return this._handleLike('PUT', id)
+  }
+
+  removeLike(id) {
+    return this._handleLike('DELETE', id)
   }
 
   deleteCard(id) {

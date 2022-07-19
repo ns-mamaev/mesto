@@ -106,11 +106,16 @@ const handleClickOnDeleteIcon = (card) => {
   confirmationPopup.setData(card)
 }
 
+const setLike = (id) => api.setLike(id);
+const removeLike = (id) => api.removeLike(id);
+
 const createCard = (cardData) => {
   const card = new Card(cardData, {
     config: selectors,
     clickOnImgHandler: zoomImage,
     clickOnRemoveButtonHandler: handleClickOnDeleteIcon,
+    setLike: setLike,
+    removeLike: removeLike,
     currentUserId: profile.getUserId()
   })
   return card.generateCard();

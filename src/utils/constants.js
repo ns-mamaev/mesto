@@ -2,6 +2,7 @@ export const validationSettings = {
   formSelector: '.form',
   inputSelector: '.form__item',
   submitButtonSelector: '.form__button',
+  submitButtonDisabledClass: 'form__button_disabled',
   inputErrorClass: 'form__item_type_error',
   errorSelector: '.form__error',
   errorClass: 'form__error_visible'
@@ -26,7 +27,7 @@ export const selectors = {
   cardImage: '.photo-card__image',
   cardLikeButton: '.photo-card__like-button',
   cardLikeActiveClass: 'photo-card__like-button_liked',
-  cardLikesCount: '.photo-card__likes-counter',
+  cardLikesCounter: '.photo-card__likes-counter',
   cardDeleteButton: '.photo-card__delete-button',
   popupImage: '.popup_content_zoomed-card-image',
   zoomedImg: '.popup__zoomed-image',

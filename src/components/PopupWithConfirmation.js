@@ -17,12 +17,14 @@ export default class PopupWithConfirmation extends Popup {
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
       this._submitButton.textContent = 'Выполнение...';
+      this._submitButton.setAttribute('disabled', '');
       this._handleSubmit(this._data)
         .then(() =>{
           this._submitButton.textContent = 'Выполнено!';
           this.close()
           setTimeout(() => {
             this._submitButton.textContent = 'Да';
+            this._submitButton.removeAttribute('disabled');
           }, 1000)
         })
     });    
