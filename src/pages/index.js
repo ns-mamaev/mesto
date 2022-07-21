@@ -143,7 +143,6 @@ const addCard = (data) => {
       renderCard(data);
     })
 }
-<<<<<<< HEAD
 
 //new Card Popup
 
@@ -156,36 +155,6 @@ popupNewCard.setEventListeners();
 const cardList = new Section(selectors.cardsList, {
   renderer: renderCard,
 });
-
-let profile;
- 
-api.getUserInfo()
-  .then(res => {
-    profile = new UserInfo(selectors, res)
-    profile.setUserInfo(res);
-    profile.setAvatar(res);
-    document.querySelector('.page').classList.remove('page_loading');
-    return api.getInitialCards()
-  })
-  .then(cards => {
-    cardList.renderItems(cards)
-  })
-  .catch(err => console.log(`Ошибка запроса к серверу: ${err}`)); 
-
-=======
-
-//new Card Popup
-
-const popupNewCard = new PopupWithForm(selectors.popupAddCard, {
-  config: selectors,
-  submitHandler: addCard
-})
-popupNewCard.setEventListeners();
-
-const cardList = new Section(selectors.cardsList, {
-  renderer: renderCard,
-});
->>>>>>> 838b5f2
 
 let profile;
 const loadingScreen = document.querySelector('.loading-screen');

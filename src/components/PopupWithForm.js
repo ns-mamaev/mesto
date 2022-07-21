@@ -35,7 +35,7 @@ export default class PopupWithForm extends Popup {
         this._submitButton.textContent = 'Упс( Ошибка сервера';
       })
       .finally(() => {
-        setTimeout(this.close.bind(this), 3000);
+        setTimeout(this.close.bind(this), 1000);
       });  
   }
 
