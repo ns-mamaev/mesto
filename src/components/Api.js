@@ -79,5 +79,6 @@ export default class Api {
         authorization: this._headers.authorization
       }
     })
+    .then(res => this._handleResponse(res))
   }  
 }

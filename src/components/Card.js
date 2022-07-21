@@ -94,7 +94,7 @@ export default class Card {
 
   _handleClickOnLike() {
     const handleClick = this._checkLikeStatus() ? this._removeLike : this._setLike;
-    handleClick(this._cardData._idd)
+    handleClick(this._cardData._id)
       .then((res) => {
         this._cardData = res;
         this._updateLikes()
