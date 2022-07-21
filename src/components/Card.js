@@ -98,7 +98,8 @@ export default class Card {
       .then((res) => {
         this._cardData = res;
         this._updateLikes()
-      });
+      })
+      .catch((err) => console.log(`Ошибка при установке лайка: ${err}`))
   }
 
   removeCard() {
