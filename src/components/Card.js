@@ -94,11 +94,12 @@ export default class Card {
 
   _handleClickOnLike() {
     const handleClick = this._checkLikeStatus() ? this._removeLike : this._setLike;
-    handleClick(this._cardData._id)
+    handleClick(this._cardData._idd)
       .then((res) => {
         this._cardData = res;
         this._updateLikes()
-      });
+      })
+      .catch((err) => console.log(`Ошибка при установке лайка: ${err}`))
   }
 
   removeCard() {

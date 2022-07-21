@@ -8,7 +8,7 @@ export default class Api {
     if (res.ok) {
       return res.json();
     }
-    return Promise.reject(`Ошибка ${res.status}`); //обработка ответа от сервера повторяется, решил выделить в отдельный метод
+    return Promise.reject(`код ${res.status}`); //обработка ответа от сервера повторяется, решил выделить в отдельный метод
   }
 
   _getData(path) {

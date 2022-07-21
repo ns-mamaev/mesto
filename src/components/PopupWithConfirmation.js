@@ -20,13 +20,20 @@ export default class PopupWithConfirmation extends Popup {
       this._submitButton.setAttribute('disabled', '');
       this._handleSubmit(this._data)
         .then(() =>{
+
           this._submitButton.textContent = 'Выполнено!';
-          this.close()
+          this.close();
+        })
+        .catch((err) => {
+          console.log(`Ошибка выполнения запроса к серверу - ${err}`)
+          this._submitButton.textContent = 'Упс( Ошибка сервера';
+        })
+        .finally(() => {
           setTimeout(() => {
             this._submitButton.textContent = 'Да';
             this._submitButton.removeAttribute('disabled');
-          }, 1000)
-        })
-    });    
+          }, 1000);
+        })             
+    })
   }
 }
