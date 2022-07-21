@@ -6,6 +6,7 @@
   overflow: hidden;
   display: flex;
   position: relative;
+  cursor: pointer;
 }
 
 .profile__avatar-wrapper::before {

@@ -12,21 +12,36 @@ export default class PopupWithConfirmation extends Popup {
     this._data = data;
   }
 
+  _submit(evt) {
+    evt.preventDefault();
+    this._submitButton.textContent = 'Выполнение...';
+    this._submitButton.setAttribute('disabled', '');
+    this._handleSubmit(this._data)
+      .then(() =>{
+        this._submitButton.textContent = 'Выполнено!';
+      })
+      .catch((err) => {
+        console.log(`Ошибка выполнения запроса к серверу - ${err}`)
+        this._submitButton.textContent = 'Упс( Ошибка сервера';
+      })
+      .finally(() => {
+        setTimeout(this.close.bind(this), 1000);
+      });  
+  }
+
   setEventListeners() {
     super.setEventListeners();
     this._form.addEventListener('submit', (evt) => {
-      evt.preventDefault();
-      this._submitButton.textContent = 'Выполнение...';
-      this._submitButton.setAttribute('disabled', '');
-      this._handleSubmit(this._data)
-        .then(() =>{
-          this._submitButton.textContent = 'Выполнено!';
-          this.close()
-          setTimeout(() => {
-            this._submitButton.textContent = 'Да';
-            this._submitButton.removeAttribute('disabled');
-          }, 1000)
-        })
-    });    
+      this._submit(evt);
+    });  
   }
+
+  close() {
+    super.close()
+    setTimeout(() => {
+      this._submitButton.textContent = 'Да';
+      this._submitButton.removeAttribute('disabled');
+    }, 1000);
+  }
+
 }

@@ -142,7 +142,6 @@ const addCard = (data) => {
     .then(data => {
       renderCard(data);
     })
-    .catch(err => console.log(`Ошибка добавления карточки: ${err}`));
 }
 
 //new Card Popup
@@ -158,19 +157,22 @@ const cardList = new Section(selectors.cardsList, {
 });
 
 let profile;
- 
-api.getUserInfo()
-  .then(res => {
-    profile = new UserInfo(selectors, res)
-    profile.setUserInfo(res);
-    profile.setAvatar(res);
-    document.querySelector('.page').classList.remove('page_loading');
-    return api.getInitialCards()
+const loadingScreen = document.querySelector('.loading-screen');
+
+Promise.all([api.getUserInfo(), api.getInitialCards()])
+  .then(([userData, cards]) => {
+    profile = new UserInfo(selectors, userData)
+    profile.setUserInfo(userData);
+    profile.setAvatar(userData);
+    
+    cardList.renderItems(cards);
+
+    loadingScreen.classList.add('loading-screen_disabled');
   })
-  .then(cards => {
-    cardList.renderItems(cards)
-  })
-  .catch(err => console.log(`Ошибка запроса к серверу: ${err}`)); 
+  .catch(err => {
+    console.log(`Ошибка запроса к серверу: ${err}`)
+    loadingScreen.textContent = 'Не удается подключиться к серверу, попробуйте перезагрузить страницу или зайти позже'
+  }); 
 
 
 

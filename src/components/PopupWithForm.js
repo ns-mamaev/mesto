@@ -28,14 +28,15 @@ export default class PopupWithForm extends Popup {
     this._submitButton.setAttribute('disabled', '');
     this._handleSubmit(this._getInputValues())
       .then(() =>{
-        this._submitButton.textContent = 'Cохранено!';
-        this.close()
-        setTimeout(() => {
-          this._submitButton.textContent = 'Сохранить';
-          this._submitButton.removeAttribute('disabled');
-          this._form.reset();
-        }, 500)  
+        this._submitButton.textContent = 'Сохранено!';
       })
+      .catch((err) => {
+        console.log(`Ошибка выполнения запроса к серверу - ${err}`)
+        this._submitButton.textContent = 'Упс( Ошибка сервера';
+      })
+      .finally(() => {
+        setTimeout(this.close.bind(this), 1000);
+      });  
   }
 
   setEventListeners() {
@@ -45,12 +46,12 @@ export default class PopupWithForm extends Popup {
     });
   }
 
-  // close() {
-  //   super.close();
-  //   setTimeout(() => {
-  //     this._form.reset();
-  //     this._s
-  //   }, 500) //сброс формы только после окончания анимации
-  // }
+  close() {
+    super.close()
+    setTimeout(() => {
+      this._submitButton.textContent = 'Сохранить';
+      this._submitButton.removeAttribute('disabled');
+    }, 1000);
+  }
 
 }
