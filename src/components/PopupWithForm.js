@@ -39,7 +39,7 @@ export default class PopupWithForm extends Popup {
         setTimeout(() => {
           this._submitButton.textContent = 'Сохранить';
           this._submitButton.removeAttribute('disabled');
-        }, 2000);
+        }, 1500);
       });  
   }
 
@@ -48,6 +48,11 @@ export default class PopupWithForm extends Popup {
     this._form.addEventListener('submit', (evt) => {
       this._submit(evt);
     });
+  }
+
+  close() {
+    super.close();
+    this._form.reset()
   }
 
 }

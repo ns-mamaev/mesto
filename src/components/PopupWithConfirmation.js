@@ -29,7 +29,7 @@ export default class PopupWithConfirmation extends Popup {
         setTimeout(() => {
           this._submitButton.textContent = 'Да';
           this._submitButton.removeAttribute('disabled');
-        }, 2000);
+        }, 1500);
       });  
   }
 
@@ -39,5 +39,5 @@ export default class PopupWithConfirmation extends Popup {
       this._submit(evt);
     });  
   }
-
+  
 }
