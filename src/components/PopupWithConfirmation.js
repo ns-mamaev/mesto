@@ -19,13 +19,17 @@ export default class PopupWithConfirmation extends Popup {
     this._handleSubmit(this._data)
       .then(() =>{
         this._submitButton.textContent = 'Выполнено!';
+        setTimeout(this.close.bind(this), 1000);
       })
       .catch((err) => {
         console.log(`Ошибка выполнения запроса к серверу - ${err}`)
         this._submitButton.textContent = 'Упс( Ошибка сервера';
       })
       .finally(() => {
-        setTimeout(this.close.bind(this), 1000);
+        setTimeout(() => {
+          this._submitButton.textContent = 'Да';
+          this._submitButton.removeAttribute('disabled');
+        }, 2000);
       });  
   }
 
@@ -34,14 +38,6 @@ export default class PopupWithConfirmation extends Popup {
     this._form.addEventListener('submit', (evt) => {
       this._submit(evt);
     });  
-  }
-
-  close() {
-    super.close()
-    setTimeout(() => {
-      this._submitButton.textContent = 'Да';
-      this._submitButton.removeAttribute('disabled');
-    }, 1000);
   }
 
 }

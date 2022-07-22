@@ -29,13 +29,17 @@ export default class PopupWithForm extends Popup {
     this._handleSubmit(this._getInputValues())
       .then(() =>{
         this._submitButton.textContent = 'Сохранено!';
+        setTimeout(this.close.bind(this), 1000);
       })
       .catch((err) => {
         console.log(`Ошибка выполнения запроса к серверу - ${err}`)
         this._submitButton.textContent = 'Упс( Ошибка сервера';
       })
       .finally(() => {
-        setTimeout(this.close.bind(this), 1000);
+        setTimeout(() => {
+          this._submitButton.textContent = 'Сохранить';
+          this._submitButton.removeAttribute('disabled');
+        }, 2000);
       });  
   }
 
@@ -44,14 +48,6 @@ export default class PopupWithForm extends Popup {
     this._form.addEventListener('submit', (evt) => {
       this._submit(evt);
     });
-  }
-
-  close() {
-    super.close()
-    setTimeout(() => {
-      this._submitButton.textContent = 'Сохранить';
-      this._submitButton.removeAttribute('disabled');
-    }, 1000);
   }
 
 }

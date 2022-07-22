@@ -43,7 +43,6 @@ const editProfile = (inputsValues) => {
       const {name, about} = res;
       profile.setUserInfo({name, about});
     })
-    .catch(err => console.log(`Невозможно обновить профиль: ${err}`))
 };
 
 const popupProfile = new PopupWithForm(selectors.popupProfile, {
@@ -66,7 +65,6 @@ const changeAvatar = (data) => {
     .then(res => {
       profile.setAvatar(res);
     })
-    .catch(err => console.log(`Невозможно обновить аватар: ${err}`));
 }
 
 const popupAvatar = new PopupWithForm(selectors.popupAvatar, {
